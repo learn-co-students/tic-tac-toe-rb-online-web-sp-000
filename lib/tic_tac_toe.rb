@@ -31,20 +31,20 @@ end
 
 
 def valid_move?(board, index)
+   valid = false
   if index.between?(0, 8) && !position_taken?(board, index)
-    return true
-  elsif index.between?(0, 8) && position_taken?(board, index)
-    return false
+    valid = true
   end
+  return valid
 end
 
 
 def position_taken?(board, index)
-  if board[index] == " " || board[index]==""|| board[index]== nil
-    return false
-  elsif board[index] == "X" || board[index]=="O"
-    return true
-  end
+  taken = true
+    if board[index] == " " || board[index]==""|| board[index]== nil
+      taken = false
+    end
+  return taken
 end
 
 
@@ -54,8 +54,9 @@ def turn(board)
   index = input_to_index(user_input)
   if valid_move?(board,index)
     move(board, index, current_player(board) )
+    move(board, index, token = "X")
     display_board(board)
-  elsif !valid_move?(board, index)
+  else
     puts "Please enter 1-9:"
     user_input = gets.strip
     index = input_to_index(user_input)
@@ -65,48 +66,46 @@ end
 
 def turn_count(board)
   counter = 0
-  board.each do |x|
-    if x == "X" || x == "O"
-      counter += 1
-
+    board.each do |x|
+      if x == "X" || x == "O"
+        counter += 1
+      end
     end
-  end
   return counter
 end
 
 
 def current_player(board)
   counter2 = turn_count(board)
-  if counter2 % 2 == 0
-    return "X"
-  else
-    return "O"
-  end
+    if counter2 % 2 == 0
+      return "X"
+    else
+      return "O"
+    end
 end
 
 
 def won?(board)
   win = false
-  WIN_COMBINATIONS.each do |win_combination|
-  if (board[win_combination[0]] == "X" && board[win_combination[1]] == "X" && board[win_combination[2]] == "X") || (board[win_combination[0]] == "O" && board[win_combination[1]] == "O" && board[win_combination[2]] == "O")
-    win = true
-
-
-  elsif
-    board == [" "," "," "," "," "," "," "," "," "]
-    return false
-end
-end
+    WIN_COMBINATIONS.each do |win_combination|
+      if (board[win_combination[0]] == "X" && board[win_combination[1]] == "X" && board[win_combination[2]] == "X") || (board[win_combination[0]] == "O" && board[win_combination[1]] == "O" && board[win_combination[2]] == "O")
+        win = true
+      elsif
+        board == [" "," "," "," "," "," "," "," "," "]
+        return false
+      end
+    end
    return win
 end
 
 
 
 def full?(board)
-  full = board.all? do |index|
-    index == "X" || index == "O"
-  end
-  full
+  full  = false
+   counter3 = turn_count(board)
+   if counter3 == 8
+     full = true
+   end
 end
 
 
@@ -117,6 +116,7 @@ end
    drew = false
    if !won?(board) && full?(board)
      drew = true
+     print "Cat's Game!"
    end
    return drew
 end
@@ -158,4 +158,5 @@ def play(board)
     elsif draw?(board)
       puts  "Cat's Game!"
     end
+  end
 end
