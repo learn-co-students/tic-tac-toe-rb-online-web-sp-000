@@ -1,3 +1,5 @@
+require 'pry'
+
 WIN_COMBINATIONS =[
   [0,1,2], [3,4,5], [6,7,8], [0,3,6],
   [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
@@ -25,7 +27,7 @@ end
 
 
 def move(board, index, token )
-       board[index] = token
+  board[index] = token
 end
 
 
@@ -52,15 +54,14 @@ def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.strip
   index = input_to_index(user_input)
-  if valid_move?(board,index)
-    move(board, index, current_player(board) )
-    move(board, index, token = "X")
-    display_board(board)
-  else
-    puts "Please enter 1-9:"
-    user_input = gets.strip
-    index = input_to_index(user_input)
-  end
+    if valid_move?(board,index)
+      move(board, index, current_player(board) )
+      display_board(board)
+    else
+      puts "Please enter 1-9:"
+      user_input = gets.strip
+      index = input_to_index(user_input)
+    end
 end
 
 
@@ -92,20 +93,21 @@ def won?(board)
         win = true
       elsif
         board == [" "," "," "," "," "," "," "," "," "]
-        return false
+        win = false
       end
     end
-   return win
+  return win
 end
 
 
 
 def full?(board)
   full  = false
-   counter3 = turn_count(board)
-   if counter3 == 8
-     full = true
-   end
+  counter3 = turn_count(board)
+    if counter3 == 9
+      full = true
+    end
+    return full
 end
 
 
@@ -114,32 +116,30 @@ end
 
  def draw?(board)
    drew = false
-   if !won?(board) && full?(board)
-     drew = true
-     print "Cat's Game!"
-   end
+     if !won?(board) && full?(board)
+       drew = true
+     end
    return drew
 end
 
 
 def over?(board)
   over = false
-  if won?(board) || full?(board) || draw?(board)
-    over = true
-  end
-  return over
+    if won?(board) || full?(board) || draw?(board)
+      over = true
+    end
 end
 
 
 def winner(board)
   win = nil
-  WIN_COMBINATIONS.each do |win_combination|
-    if board[win_combination[0]] == "X" && board[win_combination[1]] == "X" && board[win_combination[2]] == "X"
-      win = "X"
-    elsif  board[win_combination[0]] == "O" && board[win_combination[1]] == "O" && board[win_combination[2]] == "O"
-      win = "O"
+    WIN_COMBINATIONS.each do |win_combination|
+      if board[win_combination[0]] == "X" && board[win_combination[1]] == "X" && board[win_combination[2]] == "X"
+        win = "X"
+      elsif  board[win_combination[0]] == "O" && board[win_combination[1]] == "O" && board[win_combination[2]] == "O"
+        win = "O"
+      end
     end
-  end
   return win
 end
 
@@ -158,5 +158,4 @@ def play(board)
     elsif draw?(board)
       puts  "Cat's Game!"
     end
-  end
 end
