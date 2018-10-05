@@ -111,9 +111,6 @@ def full?(board)
 end
 
 
-
-
-
  def draw?(board)
    drew = false
      if !won?(board) && full?(board)
@@ -142,11 +139,6 @@ def winner(board)
     end
   return win
 end
-
-
-
-
-
 
 
 def play(board)
