@@ -79,6 +79,7 @@ def turn(board)
         turn_count(board)
         display_board(board)
       else
+        turn(board) 
       end
     
 end
@@ -131,7 +132,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) != false || full?(board) == true
+  if won?(board) != false || full?(board) == true || draw?(board)
     return true
   else
     return false
