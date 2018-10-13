@@ -68,10 +68,10 @@ def turn(board)
   index = input_to_index(input)
   check = valid_move?(board,index)
   
-  if turn_count(board) == 1
-    value = "O"
-  else 
+  if current_player(board) == "X"
     value = "X"
+  elsif current_player(board) == "O"
+    value = "O"
   end
     
       if check == true
