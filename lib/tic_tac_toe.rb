@@ -145,9 +145,9 @@ def winner(board)
   if winning_combo != false
   
     if board[winning_combo[0]] == "O"
-      puts "Congratulations O!"
+      return "Congratulations O!"
      elsif board[winning_combo[0]] == "X"
-       puts "Congratulations X!"
+       return "Congratulations X!"
      
      else
        
