@@ -40,7 +40,7 @@ def input_to_index(input)
     input = gets.strip
     index = input_to_index(input)
     if valid_move?(board, index)
-      move(board, index, player)
+      move(board, index, current_player(board))
       display_board(board)
     else
       turn(board)
@@ -91,6 +91,16 @@ def input_to_index(input)
    else
      nil
    end
+ end
  
+ def play(board)
+  until over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
  end
  
