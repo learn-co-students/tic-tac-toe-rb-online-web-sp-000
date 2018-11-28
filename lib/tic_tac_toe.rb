@@ -1,4 +1,5 @@
 #WIN_COMBINATIONS
+
 WIN_COMBINATIONS = [
 [0,1,2],
 [3,4,5],
@@ -38,9 +39,7 @@ def current_player(board)
 count = turn_count(board)
   count.odd? ? "O" : "X"
 end
-#def current_player(board)
-#  turn_count(board) % 2 == 0 ? "X" : "O"
-#end
+
 
 #move
 def move(board, index, current_player)
@@ -65,10 +64,10 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board,index)
-    move(board,index,character=current_player(board))
+    move(board,index,current_player(board))
     display_board(board)
   else
-  #  turn(board) # comment this out to get stuck in a loop.
+   turn(board)
   end
 end
 
@@ -89,18 +88,19 @@ end
 #full
 def full?(board)
 board.none?{|value| value == " " }
+
 end
 
 
 #draw
 def draw?(board)
-  full?(board) && !won?(board)
+   !won?(board) && full?(board)
 end
 
 
 #over
 def over?(board)
-won?(board) || full?(board)
+won?(board) || draw?(board)
 end
 
 #winner
@@ -116,13 +116,12 @@ end
 
 #play
 def play(board)
-   until over?(board)
+   while !over?(board)
      turn(board)
     end
       if won?(board)
-       winner(board)
         puts "Congratulations #{winner(board)}!"
-      else draw?(board)
+      elsif draw?(board)
         puts "Cat's Game!"
       end
 end
