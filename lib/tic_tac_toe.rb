@@ -74,7 +74,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
     puts "invalid move"
@@ -96,3 +96,11 @@ def current_player(board)
   turns = turn_count(board)
   (turns % 2 === 1) ? "O" : "X"
 end 
+
+def play(board)
+  while (!over?(board))
+    turn(board)
+  end
+  winner = winner(board)
+  puts (winner === false || winner.nil? ? "Cat's Game!" : "Congratulations #{winner}!")
+end
