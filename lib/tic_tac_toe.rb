@@ -76,9 +76,9 @@ def turn(board)
      turn(board)
     
   end
-   if draw?(board)
-      puts "Cat's Game!"
-    end
+   # if draw?(board)
+      # puts "Cat's Game!"
+    # end
 end
 
 def won?(board)
