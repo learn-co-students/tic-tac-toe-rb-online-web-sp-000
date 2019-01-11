@@ -8,3 +8,13 @@ puts "Welcome to Tic Tac Toe!"
 display_board(board)
 
 play(board)
+
+
+# We'll be getting user input via gets and a player will choose a position on the board by entering 1-9. 
+# Our program will then fill out the appropriate position on the board with the player's token.
+# The term 'position' will refer to the spot on the board as the player sees it (1-9).
+#
+# We will keep track of which player's turn it is and how many turns have been played.
+# We will check to see, at every turn, if there is a winner.
+# If there is a winner, we'll congratulate them.
+# If there is a tie, we will inform our players.
