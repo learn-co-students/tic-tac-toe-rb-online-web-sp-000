@@ -28,11 +28,11 @@ def move(board, index, current_player)
 end
 
 def position_taken?(board, index)
-if board[index] == "X" || board[index] == "O"
-  true
-else
-  false
-end
+  if board[index] == "X" || board[index] == "O"
+    true
+  else
+    false
+  end
 end
 
 def valid_move?(board, index)
@@ -128,27 +128,14 @@ end
 
 
 def play(board)
-  puts "Please enter 1-9:"
-  num = gets.chomp
-  index = input_to_index(num)
-  if valid_move?(board, index) == true
-    move(board, index, current_player(board))
-    display_board(board)
-end
-over?(board)
-
-if over?(board) == false
+while !over?(board) == true
   turn(board)
-  over?(board)
-play(board)
+end
 
-elsif winner(board) == "X"
-  puts "Congratulations X!"
+if won?(board)
+  puts "Congratulations #{winner(board)}!"
 
-elsif winner(board) == "O"
-  puts "Congratulations O!"
-
-elsif draw?(board) == true
+elsif draw?(board)
   puts "Cat's Game!"
 end
 end
