@@ -96,7 +96,6 @@ def turn(board)
 end
 
 def play(board)
-  input = gets
   counter=0
   while counter<9
     turn(board)
