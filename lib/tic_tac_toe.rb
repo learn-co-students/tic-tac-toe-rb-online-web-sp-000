@@ -1,3 +1,4 @@
+require "pry"
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -32,7 +33,7 @@ def full?(board)
   end
 
   def over?(board)
-    won?(board) || full?(board)
+    won?(board) || draw?(board)
   end
 
   def winner(board)
@@ -96,7 +97,16 @@ def turn(board)
 end
 
 def play(board)
+  #binding.pry
     until over?(board)
       turn(board)
+    end
+      if winner(board)== "X"
+        puts ("Congratulations X!")
+      elsif winner(board)== "O"
+        puts ("Congratulations O!")
+      elsif draw?(board)
+        puts "Cat's Game!"
+
   end
 end
