@@ -13,8 +13,17 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
+<<<<<<< HEAD
 def move(board, index, token)
   board[index] = token
+=======
+def move(board, index, current_player = "X")
+  board[index] = current_player
+end
+
+def position_taken?(board, location)
+  board[location] != " " && board[location] != ""
+>>>>>>> 342208e32c84c30c6842cf6398c5dd397c1a528f
 end
 
 def valid_move?(board, index)
@@ -22,18 +31,26 @@ def valid_move?(board, index)
 end
 
 def turn(board)
+<<<<<<< HEAD
   token = current_player(board)
+=======
+>>>>>>> 342208e32c84c30c6842cf6398c5dd397c1a528f
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
+<<<<<<< HEAD
     move(board, index, token)
+=======
+    move(board, index)
+>>>>>>> 342208e32c84c30c6842cf6398c5dd397c1a528f
     display_board(board)
   else
     turn(board)
   end
 end
 
+<<<<<<< HEAD
 def play(board)
   while !over?(board)
     turn(board)
@@ -64,6 +81,13 @@ def current_player(board)
   else
     "O"
   end
+=======
+# Define your play method below
+def play(board)
+  while board.include?("") || board.include?(" ")
+    turn(board)
+  end
+>>>>>>> 342208e32c84c30c6842cf6398c5dd397c1a528f
 end
 #////////////////////END GAME PLAY///////////////////////////////////////
 
@@ -125,8 +149,12 @@ def draw?(board)
 end
 
 def over?(board)
+<<<<<<< HEAD
   # binding.pry
   won?(board) || draw?(board)
+=======
+  won?(board) || draw?(board) || full?(board)
+>>>>>>> 342208e32c84c30c6842cf6398c5dd397c1a528f
 end
 
 def winner(board)
