@@ -41,6 +41,6 @@ def turn(board)
     move(board, index, current_player(board))
     display_board(board)
   else valid_move?(board, index) == false
-    
+
   end
 end
