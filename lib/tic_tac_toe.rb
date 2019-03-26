@@ -14,11 +14,11 @@ WIN_COMBINATIONS = [
   ]
 
   def display_board(board)
-      puts " X | X | X "
+      puts " #{board[0]} | #{board[1]} | #{board[2]} "
       puts "-----------"
-      puts " O | X | O "
+      puts " #{board[3]} | #{board[4]} | #{board[5]} "
       puts "-----------"
-      puts " O | O | X "
+      puts " #{board[6]} | #{board[7]} | #{board[8]} "
   end 
   
   def input_to_index(user_input)
@@ -38,22 +38,45 @@ WIN_COMBINATIONS = [
     index.between?(0,8) && !position_taken?(board, index)
   end 
     
-  def turn(board, position, index) 
-    if valid_move?(board, index)
-      move(board, position, player)
-    else
-      turn(board, position, player)
-    end 
+   def turn(board)
+      puts "Please enter 1-9:"
+       input = gets.strip 
+       index = input_to_index(input)
+       if valid_move?(board,index)
+          move(board, index, current_player(board))
+          display_board(board)
+       else 
+         turn(board)
+       end
+  end  
+  
+  def turn_count(board)
+        count = 0 
+      board.each do |index|
+      if index == "X" || index == "O"
+      count = count + 1 
+           end 
+      end 
+      count 
   end 
-  #def turn_count
     
+  def current_player(board)
+    if turn_count(board).even?
+      return "X" 
+    else 
+      return "O" 
+    end
+  end 
     
-  #def current_player
-    
-    
-  #def won?
-    
-    
+  def won?(board, index)
+       WIN_COMBINATIONS.detect do |combo|
+         if board[combo[0]] == board[combo[1]] && board[combo[1]] == board[combo[2]] && position_taken?(board, index(combo[0]))
+           true  
+         else 
+           false 
+         end 
+      end 
+  end 
   #def full?
     
   #def draw?
