@@ -69,16 +69,13 @@ WIN_COMBINATIONS = [
   end 
     
   def won?(board, index)
-       WIN_COMBINATIONS.detect do |combo|
-         if board[combo[0]] == board[combo[1]] && board[combo[1]] == board[combo[2]] && position_taken?(board, index(combo[0]))
-           true  
-         else 
-           false 
-         end 
-      end 
+       
   end 
-  #def full?
-    
+  
+  def full?(board)
+      board.all? {|index| index == "X" || index=="O"}
+        
+    end 
   #def draw?
     
   #def over?
