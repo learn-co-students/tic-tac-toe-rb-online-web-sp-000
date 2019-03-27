@@ -90,11 +90,11 @@ WIN_COMBINATIONS = [
     draw?(board) || won?(board)
   end
     
-  def winner(board, index)
+  def winner(board)
     if !won?(board)
         nil 
       else
-        board[index]
+        board
     end 
   end   
 
@@ -104,7 +104,7 @@ WIN_COMBINATIONS = [
        end 
       
        if won?(board)
-         puts "Congratulations!"
+         puts "Congratulations !"
        else 
             puts "Cat's Game!"
             
