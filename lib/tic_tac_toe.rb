@@ -94,7 +94,7 @@ WIN_COMBINATIONS = [
     if !won?(board)
         nil 
       else
-        board
+      current_player(board)
     end 
   end   
 
@@ -104,7 +104,7 @@ WIN_COMBINATIONS = [
        end 
       
        if won?(board)
-         puts "Congratulations !"
+         puts "Congratulations #{board[0]}!"
        else 
             puts "Cat's Game!"
             
