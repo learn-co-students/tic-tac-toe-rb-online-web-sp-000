@@ -81,10 +81,10 @@ def won?(board)
 end
 
 def full?(board)
-  if WIN_COMBINATIONS.any?{|combo| board[combo[0]] == " "}
-    false
-  else
-    true
+  if board.include?(' ') || board.include?('')
+    return false
+else
+    return true
   end
 end
 
