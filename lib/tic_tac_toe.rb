@@ -42,7 +42,7 @@ def turn(board)
    user_input = gets
    index=input_to_index(user_input)
    if valid_move?(board, index)
-     move(board, index, value="X")
+     move(board, index, current_player(board))
   else turn(board)
    end
    display_board(board)
@@ -107,11 +107,10 @@ def draw?(board)
  end
 
 def play(board)
-until over?(board)
-  input=gets
+while !over?(board)
+  turn(board)
    end
    if won?(board)
-      winner(board) == "X" || winner(board) == "O"
       puts "Congratulations #{winner(board)}!"
    else draw?(board)
       puts "Cat's Game!"
