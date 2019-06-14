@@ -9,7 +9,6 @@ WIN_COMBINATIONS = [
   [2,4,6]  # Right diagonal
 ]
 
-
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -39,17 +38,16 @@ def position_taken?(board,index)
 end
 
 def valid_move?(board,index)
-  if  index<8 && index>=0 && position_taken?(board,index) == false
+  if  index<8 && index>=0 && !position_taken?(board,index)
     return true
   else
     return false
-
   end
 end
 
 def turn(board)
   puts "Please enter 1-9:"
-  input = gets
+  input = gets.strip
   input = input_to_index(input)
   if valid_move?(board, input)
     move(board,input,char='X')
