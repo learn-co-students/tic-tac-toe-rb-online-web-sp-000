@@ -9,14 +9,6 @@ WIN_COMBINATIONS = [
   [2,4,6]  # Right diagonal
 ]
 
-def play(board)
-  turn(board) until over?(board)
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
-    puts "Draw! You're both losers :)"
-  end
-end
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -54,16 +46,15 @@ def valid_move?(board,index)
 end
 
 def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  input = input_to_index(input)
-  if valid_move?(board, input)
-    move(board,input,char='X')
+  puts 'Please enter 1-9:'
+  user_input = gets.strip
+  index = input_to_index(user_input)
+  if valid_move?(board, index)
+    move(board, index, current_player(board))
+    display_board(board)
   else
-    "Please submit another input"
     turn(board)
   end
-  display_board(board)
 end
 
 def turn_count(board)
@@ -132,4 +123,13 @@ def winner(board)
       end
       end
     return nil
+end
+
+def play(board)
+  turn(board) until over?(board)
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
 end
