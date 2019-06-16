@@ -103,7 +103,7 @@ def play(board)
 
   winner_is = current_player(board)
   count = 1
-  until over?(board) == true || won?(board) != false do
+  until over?(board) == true || won?(board) == true do
     puts count
     count +=1
     turn(board)
