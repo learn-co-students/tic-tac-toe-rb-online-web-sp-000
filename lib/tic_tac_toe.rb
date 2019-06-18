@@ -1,4 +1,4 @@
-# require 'pry'
+require 'pry'
 
 # WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
@@ -79,7 +79,8 @@ end
 
 # Check if there is a draw
 def draw?(board)
-  won?(board) == false ? true : false
+  won?(board) == false && full?(board) ? true : false
+  # full?(board) && !won?(board)
 end
 
 # Check if the game is over
@@ -110,7 +111,7 @@ def turn(board)
   index = input_to_index(user_input)
 
   if valid_move?(board, index)
-    move(board, index, "X")
+    move(board, index, current_player(board))
     display_board(board)    
   else
     puts "Invalid move!"
@@ -137,14 +138,14 @@ def play(board)
   until over?(board) == true
     turn(board)
   end
+  # binding.pry
 
   if won?(board)
     winner = winner(board)
     puts "Congratulations #{winner}!"
   elsif draw?(board)
-    puts "Cat's Game!"
+  #  binding.pry
+   puts "Cat's Game!"
   end
 
 end
-
-# binding.pry
