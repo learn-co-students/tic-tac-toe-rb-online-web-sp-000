@@ -20,7 +20,7 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-  if position_taken?(board, index) == FALSE && index >= 0 && index <= 8
+  if !position_taken?(board, index) && index >= 0 && index <= 8
     TRUE
   else
     FALSE
@@ -35,11 +35,11 @@ def turn(board)
   puts "Please enter a postion between 1 and 9"
   input = gets.strip
   index = input_to_index(input)
-  if valid_move?(board, index) == TRUE
+  if valid_move?(board, index)
     move(board, index, current_player(board))
     display_board(board)
   else
-    until valid_move?(board, index) == TRUE
+    until valid_move?(board, index)
       puts "Sorry, your move was invalid. Please try again."
       input = gets.strip
       index = input_to_index(input)
@@ -100,7 +100,7 @@ def full?(board)
 end
 
 def draw?(board)
-  if won?(board) == FALSE && full?(board) == TRUE
+  if !won?(board) && full?(board)
     return TRUE
   else
     return FALSE
@@ -108,7 +108,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board).class == Array || draw?(board) == TRUE || full?(board) == TRUE
+  if won?(board).class == Array || draw?(board) || full?(board)
     return TRUE
   else
     return FALSE
@@ -117,18 +117,18 @@ end
 
 def winner(board)
   winner = board[won?(board)[0]]
-  return winner
 end
 
 def play(board)
-  until over?(board) == TRUE
+  until over?(board)
     turn(board)
   end
-  if draw?(board) == FALSE
-    print "Congratulations!! #{winner(board)} is the winner and the best in the world!"
+  if !draw?(board) 
+    puts "Congratulations!! #{winner(board)} is the winner and the best in the world!"
   else
-    print "It is a draw!!"
+    puts "It is a draw!! We are both the best!"
   end
 end
+
 
 

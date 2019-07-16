@@ -20,7 +20,7 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-  if position_taken?(board, index) == FALSE && index >= 0 && index <= 8
+  if !position_taken?(board, index) && index >= 0 && index <= 8
     TRUE
   else
     FALSE
@@ -35,11 +35,11 @@ def turn(board)
   puts "Please enter a postion between 1 and 9"
   input = gets.strip
   index = input_to_index(input)
-  if valid_move?(board, index) == TRUE
+  if valid_move?(board, index)
     move(board, index, current_player(board))
     display_board(board)
   else
-    until valid_move?(board, index) == TRUE
+    until valid_move?(board, index)
       puts "Sorry, your move was invalid. Please try again."
       input = gets.strip
       index = input_to_index(input)
@@ -80,21 +80,17 @@ WIN_COMBINATIONS = [
 ]
 
 def won?(board)
-  WIN_COMBINATIONS.each do |win_combination|
-    win_combination1 = win_combination[0]
-    win_combination2 = win_combination[1]
-    win_combination3 = win_combination[2]
-    position1 = board[win_combination1]
-    position2 = board[win_combination2]
-    position3 = board[win_combination3]
-    if position1 == "X" && position2 == "X" && position3 == "X"
-      TRUE
-    elsif position1 == "O" && position2 == "O" && position3 == "O"
-      TRUE
-    else
-      FALSE
+  WIN_COMBINATIONS.any? do |win_combination|
+      win_index1 = win_combination[0]
+      win_index2 = win_combination[1]
+      win_index3 = win_combination[2]
+      position1 = board[win_index1]
+      position2 = board[win_index2]
+      position3 = board[win_index3]
+      if (position1 == "X" && position2 == "X" && position3 == "X") || (position1 == "O" && position2 == "O" && position3 == "O")
+        return [win_index1, win_index2, win_index3]
+      end
     end
-  end
 end
 
 def full?(board)
@@ -104,35 +100,35 @@ def full?(board)
 end
 
 def draw?(board)
-  if won?(board) == FALSE && full?(board) == TRUE
-    TRUE
+  if !won?(board) && full?(board)
+    return TRUE
   else
-    FALSE
+    return FALSE
   end
 end
 
 def over?(board)
-  if won?(board)[0] == TRUE || draw?(board) == TRUE || full?(board) == TRUE
-    TRUE
+  if won?(board).class == Array || draw?(board) || full?(board)
+    return TRUE
   else
-    FALSE
+    return FALSE
   end
 end
 
 def winner(board)
-  if won?(board) == TRUE
-    game_winner = board[won?(board)[0]]
-  end
+  winner = board[won?(board)[0]]
 end
 
 def play(board)
-  until over?(board) == TRUE
+  until over?(board)
     turn(board)
   end
-  if draw?(board) == FALSE
+  if !draw?(board) 
     puts "Congratulations!! #{winner(board)} is the winner and the best in the world!"
   else
-    puts "It is a draw!!"
+    puts "It is a draw!! We are both the best!"
   end
 end
+
+
 
