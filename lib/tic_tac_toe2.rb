@@ -80,17 +80,17 @@ WIN_COMBINATIONS = [
 ]
 
 def won?(board)
-  WIN_COMBINATIONS.each do |win_combination|
-    win_combination1 = win_combination[0]
-    win_combination2 = win_combination[1]
-    win_combination3 = win_combination[2]
-    position1 = board[win_combination1]
-    position2 = board[win_combination2]
-    position3 = board[win_combination3]
+  WIN_COMBINATIONS.any? do |win_combination|
+    win_index1 = win_combination[0]
+    win_index2 = win_combination[1]
+    win_index3 = win_combination[2]
+    position1 = board[win_index1]
+    position2 = board[win_index2]
+    position3 = board[win_index3]
     if position1 == "X" && position2 == "X" && position3 == "X"
-      TRUE
+      win_combination
     elsif position1 == "O" && position2 == "O" && position3 == "O"
-      TRUE
+      win_combination
     else
       FALSE
     end
@@ -112,7 +112,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board)[0] == TRUE || draw?(board) == TRUE || full?(board) == TRUE
+  if won?(board) == TRUE || draw?(board) == TRUE || full?(board) == TRUE
     TRUE
   else
     FALSE
@@ -121,7 +121,7 @@ end
 
 def winner(board)
   if won?(board) == TRUE
-    game_winner = board[won?(board)[0]]
+    return board[won?(board)[0]]
   end
 end
 

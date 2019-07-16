@@ -80,21 +80,17 @@ WIN_COMBINATIONS = [
 ]
 
 def won?(board)
-  WIN_COMBINATIONS.each do |win_combination|
-    win_combination1 = win_combination[0]
-    win_combination2 = win_combination[1]
-    win_combination3 = win_combination[2]
-    position1 = board[win_combination1]
-    position2 = board[win_combination2]
-    position3 = board[win_combination3]
-    if position1 == "X" && position2 == "X" && position3 == "X"
-      TRUE
-    elsif position1 == "O" && position2 == "O" && position3 == "O"
-      TRUE
-    else
-      FALSE
+  WIN_COMBINATIONS.any? do |win_combination|
+      win_index1 = win_combination[0]
+      win_index2 = win_combination[1]
+      win_index3 = win_combination[2]
+      position1 = board[win_index1]
+      position2 = board[win_index2]
+      position3 = board[win_index3]
+      if (position1 == "X" && position2 == "X" && position3 == "X") || (position1 == "O" && position2 == "O" && position3 == "O")
+        return [win_index1, win_index2, win_index3]
+      end
     end
-  end
 end
 
 def full?(board)
@@ -105,24 +101,23 @@ end
 
 def draw?(board)
   if won?(board) == FALSE && full?(board) == TRUE
-    TRUE
+    return TRUE
   else
-    FALSE
+    return FALSE
   end
 end
 
 def over?(board)
-  if won?(board)[0] == TRUE || draw?(board) == TRUE || full?(board) == TRUE
-    TRUE
+  if won?(board).class == Array || draw?(board) == TRUE || full?(board) == TRUE
+    return TRUE
   else
-    FALSE
+    return FALSE
   end
 end
 
 def winner(board)
-  if won?(board) == TRUE
-    game_winner = board[won?(board)[0]]
-  end
+  winner = board[won?(board)[0]]
+  return winner
 end
 
 def play(board)
@@ -130,9 +125,10 @@ def play(board)
     turn(board)
   end
   if draw?(board) == FALSE
-    puts "Congratulations!! #{winner(board)} is the winner and the best in the world!"
+    print "Congratulations!! #{winner(board)} is the winner and the best in the world!"
   else
-    puts "It is a draw!!"
+    print "It is a draw!!"
   end
 end
+
 
