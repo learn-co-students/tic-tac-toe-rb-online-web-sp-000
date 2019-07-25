@@ -19,20 +19,20 @@ def display_board(board)
 end
 
 # code your input_to_index and move method here!
-def input_to_index(num)
-  num = num.to_i - 1
+def input_to_index(input)
+  input.to_i - 1
 end
 
-def move(board, num, player)
-  board[num] = player
+def move(board, index, player)
+  board[index] = player
 end
 
-def position_taken?(board, num)
-  board[num] == "X" || board[num] == "O"
+def position_taken?(board, index)
+  board[index] == "X" || board[index] == "O"
 end
 
-def valid_move?(board, num)
-  !position_taken?(board, num) && num.between?(0, 8)
+def valid_move?(board, index)
+  !position_taken?(board, index) && index.between?(0, 8)
 end
 
 def turn(board)
@@ -40,8 +40,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    player = current_player(board)
-    move(board, index, player)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -50,6 +49,7 @@ end
 
 def turn_count(board)
   board.count("X") + board.count("O")
+  # board.count {|token| token == "X" || token == "O"}
 end
 
 def current_player(board)
@@ -71,7 +71,7 @@ def draw?(board)
 end
 
 def over?(board)
-  won?(board) || full?(board) || draw?(board)
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -81,9 +81,11 @@ def winner(board)
 end
 
 def play(board)
-  while !over?(board)
-    turn(board)
-  end
+  # while !over?(board)
+  #   turn(board)
+  # end
+
+  turn(board) until over?(board)
 
   if won?(board)
     puts "Congratulations #{winner(board)}!"
