@@ -89,41 +89,22 @@ def current_player(board)
 end
 
 def won?(board)
-  if board[0] == "X" && board[1] == "X" && board[2] == "X"
-    WIN_COMBINATIONS[0]
-  elsif board[0] == "O" && board[1] == "O" && board[2] == "O"
-    WIN_COMBINATIONS[0]
-  elsif board[3] == "X" && board[4] == "X" && board[5] == "X"
-    WIN_COMBINATIONS[1]
-  elsif board[3] == "O" && board[4] == "O" && board[5] == "O"
-    WIN_COMBINATIONS[1]
-  elsif board[6] == "X" && board[7] == "X" && board[8] == "X"
-    WIN_COMBINATIONS[2]
-  elsif board[6] == "O" && board[7] == "O" && board[8] == "O"
-    WIN_COMBINATIONS[2]
-  elsif board[0] == "X" && board[3] == "X" && board[6] == "X"
-    WIN_COMBINATIONS[3]
-  elsif board[0] == "O" && board[3] == "O" && board[6] == "O"
-    WIN_COMBINATIONS[3]
-  elsif board[1] == "X" && board[4] == "X" && board[7] == "X"
-    WIN_COMBINATIONS[4]
-  elsif board[1] == "O" && board[4] == "O" && board[7] == "O"
-    WIN_COMBINATIONS[4]
-  elsif board[2] == "X" && board[5] == "X" && board[8] == "X"
-    WIN_COMBINATIONS[5]
-  elsif board[2] == "O" && board[5] == "O" && board[8] == "O"
-    WIN_COMBINATIONS[5]
-  elsif board[0] == "X" && board[4] == "X" && board[8] == "X"
-    WIN_COMBINATIONS[6]
-  elsif board[0] == "O" && board[4] == "O" && board[8] == "O"
-    WIN_COMBINATIONS[6]
-  elsif board[2] == "X" && board[4] == "X" && board[6] == "X"
-    WIN_COMBINATIONS[7]
-  elsif board[2] == "O" && board[4] == "O" && board[6] == "O"
-    WIN_COMBINATIONS[7]
-  else
-    false 
-  end
+  WIN_COMBINATIONS.each {|win_combo|
+    index_0 = win_combo[0]
+    index_1 = win_combo[1]
+    index_2 = win_combo[2]
+
+    position_1 = board[index_0]
+    position_2 = board[index_1]
+    position_3 = board[index_2]
+
+    if position_1 == "X" && position_2 == "X" && position_3 == "X"
+      return win_combo
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+      return win_combo
+    end
+  }
+  return false
 end
 
 def full?(board)
