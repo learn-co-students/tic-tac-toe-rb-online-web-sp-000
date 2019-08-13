@@ -89,10 +89,10 @@ end
 def play(board)
   while over?(board) == false
     turn(board)
-    if won?(board)
+  end
+  if won?(board)
     puts "Congratulations #{winner(board)}!"
-    else
+  elsif draw?(board)
     puts "Cat's Game!"
-    end
-   end
+  end
   end
