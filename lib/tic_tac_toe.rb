@@ -60,18 +60,18 @@ def turn(board)
   end
 end
 
-# def position_taken?(board, index)
-#   board[index] === 'X' || board[index] == 'O'
-# end
+def position_taken?(board, index)
+  board[index] === 'X' || board[index] == 'O'
+end
 
 # Method for current players move
 def current_player(board)
   turn_count(board).even? ? 'X' : 'O'
 end
 
-def position_taken?(board, index)
-  board[index] != " " 
-end
+# def position_taken?(board, index)
+#   board[index] != " " 
+# end
 #///////////////////////////////////////////////////
 def won?(board)
   WIN_COMBINATIONS.each do |index|
