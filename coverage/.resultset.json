@@ -69,8 +69,8 @@
         null,
         null,
         null,
-        null,
-        null,
+        1,
+        0,
         null,
         null,
         1,
@@ -109,6 +109,6 @@
         null
       ]
     },
-    "timestamp": 1566594156
+    "timestamp": 1566594633
   }
 }
