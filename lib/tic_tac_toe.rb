@@ -90,3 +90,42 @@ def won?(board)
     end
     false
   end
+  
+def full?(board)
+  full_board = board.all? do |position|
+    position == "X" || position == "O" 
+end
+end
+
+def draw?(board)
+  if won?(board)
+  elsif full?(board)
+  true
+end
+end
+
+def over?(board)
+  if won?(board)
+    true
+  elsif full?(board)
+    true 
+  elsif draw?(board)
+    true
+end
+end
+
+def winner(board)
+  over?(board) #make sure it's over
+  won?(board)
+  index = won?(board)[0] #variable index = first unit of winning array
+    board[index] #retrieve value of that first unit
+end
+
+def play(board)
+  puts 
+  input = gets.chomp
+  #build a loop, prompt user for input via gets method call over? as condition at end of each loop
+end  
+    # asks for players input on a turn of the game (FAILED - 4)
+    # checks if the game is over after every turn (FAILED - 5)
+    # plays the first turn of the game (FAILED - 6)
