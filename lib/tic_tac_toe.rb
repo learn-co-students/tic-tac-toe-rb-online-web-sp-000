@@ -22,14 +22,14 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, user_input, value = "X")
+def move(board, user_input, value)
   board[user_input.to_i] = value
 end
 
 def position_taken?(board, user_input)
   if board[user_input] == " " || board[user_input] == "" || board[user_input] == nil
-    true
-  else false
+    false
+  else true
 end
 end
 
@@ -122,10 +122,18 @@ def winner(board)
 end
 
 def play(board)
-  puts 
-  input = gets.chomp
-  #build a loop, prompt user for input via gets method call over? as condition at end of each loop
-end  
-    # asks for players input on a turn of the game (FAILED - 4)
-    # checks if the game is over after every turn (FAILED - 5)
-    # plays the first turn of the game (FAILED - 6)
+  if over?(board) 
+    break
+  elsif turn(board)
+ end
+ end
+ 
+ #counter = 0
+ #until over?(board)
+ #turn(board)
+ #counter += 1
+#end
+#end
+  #allows turns
+  #checks if game is over after each turns
+  #if game is over due to winning or draw, congratulates winner
