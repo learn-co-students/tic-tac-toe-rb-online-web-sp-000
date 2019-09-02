@@ -116,24 +116,26 @@ end
 
 def winner(board)
   over?(board) #make sure it's over
-  won?(board)
-  index = won?(board)[0] #variable index = first unit of winning array
+  if won?(board) #see if anyone won, return that array
+    index = won?(board)[0] #index = first unit of winning array
     board[index] #retrieve value of that first unit
+  elsif false  
+end
 end
 
 def play(board)
-  if over?(board) 
-    break
-  elsif turn(board)
- end
- end
+  until over?(board)
+    turn(board)
+  end
+end  
+ #end
+  #if won?(board)
+   #return "Congratulations"
+  #elsif draw?(board)
+  #  return "Draw"
+
  
- #counter = 0
- #until over?(board)
- #turn(board)
- #counter += 1
-#end
-#end
+ 
   #allows turns
   #checks if game is over after each turns
   #if game is over due to winning or draw, congratulates winner
