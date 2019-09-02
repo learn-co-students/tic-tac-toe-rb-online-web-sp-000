@@ -34,10 +34,7 @@ end
 end
 
 def valid_move?(board, user_input)
-  if user_input != user_input.clamp(0,8)
-    false
-  else position_taken?(board, user_input) 
-end 
+  user_input.between?(0,8) && !position_taken?(board, user_input)
 end
 
 def turn(board)
@@ -45,7 +42,7 @@ def turn(board)
   user_input = gets.strip
   index = input_to_index(user_input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else 
     turn(board)
@@ -63,7 +60,6 @@ def turn(board)
 end  
 
 def current_player(board)
-  turn_count(board)
     if turn_count(board).even?
        "X"
     else 
@@ -92,26 +88,17 @@ def won?(board)
   end
   
 def full?(board)
-  full_board = board.all? do |position|
-    position == "X" || position == "O" 
+  board.all? do |position|
+  position == "X" || position == "O" 
 end
 end
 
 def draw?(board)
-  if won?(board)
-  elsif full?(board)
-  true
-end
+  full?(board) && !won?(board)
 end
 
 def over?(board)
-  if won?(board)
-    true
-  elsif full?(board)
-    true 
-  elsif draw?(board)
-    true
-end
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -127,12 +114,14 @@ def play(board)
   until over?(board)
     turn(board)
   end
-end  
- #end
-  #if won?(board)
-   #return "Congratulations"
-  #elsif draw?(board)
-  #  return "Draw"
+  if won?(board)
+    puts "congrats {"
+  elsif draw?(board)
+    puts "cats game"
+  end
+end
+
+
 
  
  
