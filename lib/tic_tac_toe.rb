@@ -139,14 +139,26 @@ def over?(board)
   won?(board) || draw?(board)
 end
 
+# def play(board)
+#   until over?(board) == true
+#     turn(board)
+#   end
+#   if winner(board)
+#     puts "Congratulations!"
+#   elsif draw?(board)
+#     puts "Draw!"
+#   else
+#     return nil
+#   end
+# end
 def play(board)
-  until over?(board) == true
+  until over?(board) do
     turn(board)
   end
   if winner(board)
-    puts "Congratulations!"
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "Draw!"
+    puts "Cat's Game!"
   else
     return nil
   end
