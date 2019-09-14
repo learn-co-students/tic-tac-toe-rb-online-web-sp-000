@@ -71,3 +71,65 @@ def current_player(board)
     return "O"
   end
 end
+
+#Coding in the Win Draw Full Loss code here.
+
+def won?(board)
+  WIN_COMBINATIONS.each {|win_combos|
+    index_0 = win_combos[0]
+    index_1 = win_combos[1]
+    index_2 = win_combos[2]
+
+    position_1 = board[index_0]
+    position_2 = board[index_1]
+    position_3 = board[index_2]
+
+    if position_1 == "X" && position_2 == "X" && position_3 == "X"
+      return win_combos
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+      return win_combos
+    end
+  }
+  return false
+end
+
+def full?(board)
+  board.all? {|index| index == "X" || index == "O"}
+end
+
+def draw?(board)
+  if !won?(board) && full?(board)
+    return true
+  else
+    return false
+  end
+end
+
+def over?(board)
+  if won?(board) || full?(board) || draw?(board)
+    return true
+  else
+    return false
+  end
+end
+
+def winner (board)
+  index = []
+  index = won?(board)
+  if index == false
+    return nil
+  else
+    if board[index[0]] == "X"
+  elsif board[index[0]] == "X"
+      return "X"
+    else
+      return "O"
+    end
+  end
+end
+
+def winner(board)
+  if winning_combo = won?(board)
+    board[winning_combo.first]
+  end
+end
