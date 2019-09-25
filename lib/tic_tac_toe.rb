@@ -64,7 +64,9 @@ if valid_move?(board, index) == true
   else 
     puts "invalid"
 turn(board)
+  end
 end
+
 
 
 def won?(board)
@@ -110,8 +112,8 @@ def play(board)
     turn(board)
   end
   if won?(board)
-    puts "Congratulations   !! You Win!"
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "Cat's Game"
+    puts "Cat's Game!"
   end
 end
