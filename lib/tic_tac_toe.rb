@@ -43,14 +43,15 @@ end
 end
   
 def move(board, position, player_token)
-   board[position] = player_token
+  board[position] = player_token
 end
 
 def current_player(board)
   if turn_count(board) % 2 == 0
-    puts "X"
+    "X"
 else 
-    puts "O"
+    "O"
+  end
 end
 
 def turn(board)
@@ -58,30 +59,20 @@ def turn(board)
     user_input = gets.strip
  index = input_to_index(user_input) 
 if valid_move?(board, index) == true
-  move(board, position, player_token)
-    turn(board)
+  move(board, index, current_player(board))
+    display_board(board)
   else 
     puts "invalid"
-end
-  turn(board)
+turn(board)
 end
 
-def play(board)
-9.times do turn(board) 
-    end
-  end
-end
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
-  
+
 def won?(board)
 WIN_COMBINATIONS.each do |win_combo| 
     index_1 = win_combo[0]
     index_2 = win_combo[1]
     index_3 = win_combo[2]
-    
-    
+
     element_1 = board[index_1]
     element_2 = board[index_2]
     element_3 = board[index_3]
@@ -104,76 +95,26 @@ end
 def over?(board)
   won?(board) || draw?(board) || full?(board)
 end
+
 def winner(board)
  win_combo = won?(board) 
  if win_combo
    return board[win_combo[0]] 
-    
-else
-  return nil
+ else
+   return nil
   end
  end
-  
-
-
-  
-#   WIN_COMBINATIONS.each do |win_combo| 
-#     index_1 = win_combo[0]
-#     index_2 = win_combo[1]
-#     index_3 = win_combo[2]
-    
-    
-#     element_1 = board[index_1]
-#     element_2 = board[index_2]
-#     element_3 = board[index_3]
-    
-#     if element_1 == "X" && element_2 == "X" && element_3 == "X" || element_1 == "O" && element_2 == "O" && element_3 == "O"
-#       return win_combo
-#   end
-#   end
-#   board.any? == "X" || board.any? == "O"
-# end
-  
-#   # binding.pry
-  
-  
-# def full?(board)
-#   board.all? {|element|element == "X" || element == "O"}
-  
-# end
-
-# def draw?(board)
-# !won?(board) && full?(board) 
-# end
-
-# def over?(board)
-#   won?(board) || draw?(board) || full?(board)
-# end
-
-
-#   def winner(board)
-# win_combo = won?(board) 
-# if win_combo
-#   return board[win_combo[0]] 
-    
-# else
-#   return nil
-#   end
-# end
-# def turn_count(board)
-#   # board.count{|token| token == "X" || token == "O"}
-
-#   turns = 0
-#   board.each do |token|
-#     if token == "X" || token == "O"
-#       turns += 1
-#     end
-#   end
-#   turns
-
-# end
-
-# def current_player(board)
-#   turn_count(board) % 2 == 0 ? "X" : "O"
-# end
-  
+   
+def play(board)
+  turn(board) 
+  while over?(board) == 
+    turn(board)
+    until won?(board) == true
+    puts "Congratulations  !! You Win!"
+   until draw?(board) == true
+    puts "Cat's Game"
+      end
+    end
+  end
+end
+end
