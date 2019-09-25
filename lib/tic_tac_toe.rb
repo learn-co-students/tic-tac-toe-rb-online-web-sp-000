@@ -21,8 +21,6 @@ def input_to_index(user_input)
   user_input.to_i - 1 
 end
 
-
-
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
 end
@@ -59,13 +57,14 @@ def turn(board)
   puts "Please enter 1-9:"
     user_input = gets.strip
  index = input_to_index(user_input) 
-if  valid_move?(board, index) == true
+if valid_move?(board, index) == true
   move(board, position, player_token)
     display_board(board)
   else 
     puts "invalid"
+end
   turn(board)
-end    
+end
 
 def play(board)
 9.times do turn(board) 
@@ -114,7 +113,6 @@ else
   return nil
   end
  end
-end
   
 
 
