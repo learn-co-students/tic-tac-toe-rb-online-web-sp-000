@@ -32,38 +32,44 @@ def valid_move?(board, index)
     true
   end 
 end
+
 def turn_count(board)
   board.count{|token| token == "X" || token == "O"}
   turns = 0
   board.each do |token|
     if token == "X" || token == "O"
       turns += 1
-    end
   end
+end
   turns
+end
+  
 def move(board, position, player_token)
    board[position] = player_token
 end
+
 def current_player(board)
-  if turn_count(board) == "X"
+  if turn_count(board) % 2 == 0
     puts "X"
-  else 
+else 
     puts "O"
-  end
+end
+
 def turn(board)
   puts "Please enter 1-9:"
     user_input = gets.strip
  index = input_to_index(user_input) 
 if  valid_move?(board, index) == true
-  move(board, index, current_player)
+  move(board, position, player_token)
     display_board(board)
   else 
-    turn(board)
+    puts "invalid"
+  turn(board)
 end    
+
 def play(board)
 9.times do turn(board) 
-  end
-end
+    end
   end
 end
 def position_taken?(board, index)
@@ -84,7 +90,7 @@ WIN_COMBINATIONS.each do |win_combo|
     if element_1 == "X" && element_2 == "X" && element_3 == "X" || element_1 == "O" && element_2 == "O" && element_3 == "O"
       return win_combo
    end
-  end
+end
   board.any? == "X" || board.any? == "O"
 end
   
@@ -106,8 +112,8 @@ def winner(board)
     
 else
   return nil
-   end
   end
+ end
 end
   
 
