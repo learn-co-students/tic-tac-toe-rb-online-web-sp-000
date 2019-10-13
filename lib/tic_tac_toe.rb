@@ -36,16 +36,18 @@ end
 def turn(board)
     puts "Please enter 1-9:"
     input = gets.strip
-    input = input_to_index(input)
+    index = input_to_index(input)
+    token = current_player(board)
     
-      if valid_move?(board, input) == true
+      if valid_move?(board, index) == true
        
-          move(board, input, token = "X")
+          move(board, index, token)
           else 
             turn(board)
        end
      display_board(board)
   end
+
 
 def turn_count(board)
   count = 0
@@ -108,21 +110,16 @@ def winner(board)
     end
 end
 
-
 def play(board)
-  #binding.pry
+#binding.pry
+  until over?(board) do 
     turn(board)
-      
-      over?(board)
-      over?(board)
-      over?(board)
+end 
+      if draw?(board)
+          puts "Cat's Game!"
+       elsif over?(board)
+      	   puts "Congratulations #{winner(board)}!"
     
 end
-
-
-
-
-
-
-
+end
 
