@@ -50,3 +50,29 @@ def current_player(board)
     "X"
   end
 end
+
+def won?(board)
+  WIN_COMBINATIONS.find do |indexes|
+    board[indexes[0]] == board[indexes[1]] && board[indexes[1]] == board[indexes[2]] && position_taken?(board, indexes[0])
+  end
+end
+
+def full?(board)
+  board.all?{|position| position == "X" || position == "O"}
+end
+
+def draw?(board)
+  !won?(board) && full?(board)
+end
+
+def over?(board)
+  won?(board) || draw?(board)
+end
+
+def winner(board)
+  if won?(board)
+    board[won?(board[0])]
+  else
+    nil
+  end
+end
