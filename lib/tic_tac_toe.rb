@@ -1,5 +1,3 @@
-require 'pry'
-
 WIN_COMBINATIONS = [
   [0, 1, 2], # Top row 
   [3, 4, 5], # Middle row
@@ -66,7 +64,6 @@ def turn_count(board)
 end
 
 def current_player(board)
-  # binding.pry 
   if turn_count(board) % 2 == 0 
     return "X" 
   else 
