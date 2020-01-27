@@ -47,11 +47,13 @@ def valid_move?(board, index)
 end
 
 def turn(board)
+  current_player = current_player(board)
+  puts "Current Player: #{current_player}"
   puts "Please choose your next move: Spaces 1-9"
   # move = gets.strip
   space = input_to_index(gets.strip)
   if valid_move?(board, space)
-    move(board, space, "X")
+    move(board, space, current_player)
     # hard coded to enter X each turn
   else
     puts "Invalid selection, please try again./n"
@@ -68,9 +70,65 @@ def turn_count(board)
 end
 
 def current_player(board)
-  if turn_count.even?
+  if turn_count(board).even?
     player = "X"
   else
     player = "0"
+  end
+end
+
+def won?(board)
+  is_won = false
+  WIN_COMBINATIONS.each do |combo|
+    position_1 = board[combo[0]]
+    position_2 = board[combo[1]]
+    position_3 = board[combo[2]]
+    if position_1 == "X" && position_2 == "X" && position_3 == "X"
+      is_won = true
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+      is_won = true
+    end
+  end
+  is_won
+end
+
+def full?(board)
+  if turn_count(board) == 9
+    return true
+  else
+    return false
+  end
+end
+
+def draw?(board)
+  if won?(board)
+    return false
+  elsif full?(board)
+    return true
+  end
+end
+
+def over?(board)
+  if draw?(board)
+    return true
+  elsif won?(board)
+    return true
+  end
+end
+
+def winner(board)
+  if won?(board)
+    winner = nil
+    WIN_COMBINATIONS.each do |combo|
+      position_1 = board[combo[0]]
+      position_2 = board[combo[1]]
+      position_3 = board[combo[2]]
+      if position_1 == "X" && position_2 == "X" && position_3 == "X"
+        winner = "X"
+      elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+        winner = "O"
+      end
+    end
+    return winner
   end
 end
