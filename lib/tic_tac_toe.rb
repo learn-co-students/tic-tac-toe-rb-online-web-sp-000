@@ -57,3 +57,11 @@ def turn(board)
     turn(board)
   end
 end
+
+def turn_count(board)
+  turn = 0
+  board.each_with_index do |i, n|
+    turn += 1 if position_taken?(board, n)
+  end
+  turn
+end
