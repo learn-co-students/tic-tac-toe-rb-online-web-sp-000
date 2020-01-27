@@ -47,4 +47,13 @@ def valid_move?(board, index)
 end
 
 def turn(board)
+  puts "Please choose your next move: Spaces 1-9"
+  # move = gets.strip
+  space = input_to_index(gets.strip)
+  if valid_move?(board, space)
+    move(board, space, "X")
+  else
+    puts "Invalid selection, please try again./n"
+    turn(board)
+  end
 end
