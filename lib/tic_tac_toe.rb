@@ -1,3 +1,5 @@
+require 'pry'
+
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -21,5 +23,7 @@ def input_to_index(user_input)
   output = user_input.to_i - 1
 end
 
-def move(board, index)
+def move(board, index, player)
+  board[index] = player
+  # binding.pry
 end
