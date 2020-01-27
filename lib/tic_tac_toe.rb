@@ -47,6 +47,7 @@ def valid_move?(board, index)
 end
 
 def turn(board)
+  display_board(board)
   current_player = current_player(board)
   puts "Current Player: #{current_player}"
   puts "Please choose your next move: Spaces 1-9"
@@ -54,6 +55,7 @@ def turn(board)
   space = input_to_index(gets.strip)
   if valid_move?(board, space)
     move(board, space, current_player)
+    puts "\n\n"
     # hard coded to enter X each turn
   else
     puts "Invalid selection, please try again./n"
