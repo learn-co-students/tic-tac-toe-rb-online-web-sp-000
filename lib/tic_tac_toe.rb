@@ -132,3 +132,16 @@ def winner(board)
     return winner
   end
 end
+
+def play(board)
+  puts "Welcome to Tic Tac Toe!"
+  while !over?(board)
+    turn(board)
+  end
+
+  if draw?(board)
+    puts "Sorry, but that's a Draw!"
+  else
+    puts "The winner is Player #{winner(board)}!"
+  end
+end
