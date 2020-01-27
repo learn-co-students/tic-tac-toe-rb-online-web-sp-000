@@ -52,6 +52,7 @@ def turn(board)
   space = input_to_index(gets.strip)
   if valid_move?(board, space)
     move(board, space, "X")
+    # hard coded to enter X each turn
   else
     puts "Invalid selection, please try again./n"
     turn(board)
@@ -64,4 +65,12 @@ def turn_count(board)
     turn += 1 if position_taken?(board, n)
   end
   turn
+end
+
+def current_player(board)
+  if turn_count.even?
+    player = "X"
+  else
+    player = "0"
+  end
 end
