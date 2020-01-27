@@ -73,7 +73,7 @@ def current_player(board)
   if turn_count(board).even?
     player = "X"
   else
-    player = "0"
+    player = "O"
   end
 end
 
@@ -141,7 +141,9 @@ def play(board)
 
   if draw?(board)
     puts "Sorry, but that's a Draw!"
+    puts "Cat's Game!"
   else
     puts "The winner is Player #{winner(board)}!"
+    puts "Congratulations #{winner(board)}!"
   end
 end
