@@ -26,3 +26,25 @@ end
 def move(board, index, player)
   board[index] = player
 end
+
+def position_taken?(board, index)
+  if board[index] == " " || board[index] == "" || board[index] == nil
+    return false
+  else
+    return true
+  end
+end
+
+def valid_move?(board, index)
+  # binding.pry
+  #if user finds an empty space, it should return true
+  #if user finds a space already used, it should return false
+  if !position_taken?(board, index) && index.between?(0,8)
+    return true
+  else
+    return false
+  end
+end
+
+def turn(board)
+end
