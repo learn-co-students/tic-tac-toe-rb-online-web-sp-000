@@ -1,3 +1,4 @@
+
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -60,14 +61,12 @@ def valid_move?(board, index)
   end
 
   def won?(board)
-   if board.include?("X"||"O")
      WIN_COMBINATIONS.each do |win_comb|
         if [board[win_comb[0]], board[win_comb[1]], board[win_comb[2]]].all? {|i| i == board[win_comb[0]]} && position_taken?(board, win_comb[0] )
          return win_comb
        end
      end
      false
-   end
   end
 
   def full?(board)
