@@ -40,19 +40,6 @@ def valid_move?(board, index)
   index.between?(0,8) && !position_taken?(board, index) 
 end
 
-#turn 
-def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index)
-    display_board(board)
-  else
-    turn(board)
-  end
-end
-
 #turn_count
 def turn_count(value)
   count = 0 
@@ -115,46 +102,43 @@ end
 
 #full?
 def full?(board)
-  board.all?{|move| move = "X" || move = nil}
+  board.all?{|move| move = "X" || move = "O"}
 end
 
 #draw?
 def draw?(board)
-  if !won?(board) && full?(board)
-    return true 
-    elsif !won?(board) && !full?(board)
-    return true 
-  else won?(board)
-    return false 
-  end
+  won?(board) == false && full?(board) == true 
 end
 
 #over?
 def over?(board)
-  if won?(board)
-    return true 
-    elsif draw?(board)
-      return true 
-    else full?(board) 
-      return true
-    end
-  end
+  won?(board) != false || draw?(board) == true || full?(baord) == true
+end
 
-#winner?
-def winner?(board)
-  winner = won?(baord)
-  if winner.first == 0 || winner.first == 1 || winner.first ==2 ||winner.first ==3 || winner.first == 6
-    board[winner.first]
-  else winner = false
-    return nil
-  end
+#winner
+def winner(board)
+  if won?(board).any? {|win| 
+      win = WIN_COMBINATIONS[0] || 
+      win = WIN_COMBINATIONS[1] ||
+      win = WIN_COMBINATIONS[2] ||
+      win = WIN_COMBINATIONS[3] ||
+      win = WIN_COMBINATIONS[4] ||
+      win = WIN_COMBINATIONS[5] ||
+      win = WIN_COMBINATIONS[6] ||
+      win = WIN_COMBINATIONS[7] ||
+      win = WIN_COMBINATIONS[8] ||
+  }
+      winner = won?(board).first
+      return winner
+    else 
+      return nil
+    end 
+end
+
+#turn 
+def turn(board)
 end
 
 #play 
 def play(board)
-  count = 0  
-  until count == 9 do  
-    turn(board)
-    count += 1 
-  end
 end
