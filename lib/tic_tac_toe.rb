@@ -1,3 +1,5 @@
+require "pry"
+
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -100,6 +102,7 @@ def won?(board)
 end
 
 def full?(board)
+  #binding.pry
   if board.any?{|index| index == " "} == false
     return true
   else
@@ -116,15 +119,17 @@ def draw?(board)
 end
 
 def over?(board)
-  if draw?(board) == true
-    return true
-  elsif full?(board) == true
-    return true
-  elsif won?(board).class == Array && full?(board) == false
-    return true
-  else
-    return false
-  end
+  won?(board) || draw?(board)
+  #binding.pry
+#  if won?(board).class == Array && full?(board) == false
+#    return true
+#  elsif full?(board) == true && won?(board).class == Array
+#    return true
+#  elsif draw?(board) == true
+#    return true
+#  else
+#    return false
+#  end
 end
 
 def winner(board)
@@ -144,12 +149,12 @@ end
 def play(board)
   while over?(board) == false
     turn(board)
-    if over?(board) == true
-      if won?(board).class == Array
-        puts "Congratulations '#{winner(board)}', you have won!"
-      elsif draw?(board) == true
-        puts "It's a draw!"
-      end
-    end
   end
+  #if over?(board) == true
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+      puts "Cat's Game!"
+    end
+  #end
 end
