@@ -38,7 +38,7 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-  index.between?(0, 8) || !position_taken?(board, index) 
+  index.between?(0, 8) && !position_taken?(board, index) 
   
   # position_taken?(board, index) || index.between?(0, 8) == false
   #   return false
@@ -108,12 +108,13 @@ def winner(board)
   end
 end
 
-# def play(board)
-#   until over?(board)
-#     turn(board)
-#   end
-#   #if the game is won
-#   #congratulate the winner
-#   #elsif its a draw 
-#   #puts "Cat's Game"
-# end
+def play(board)
+  until over?(board) || draw?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  else
+    puts "Cat's Game!"
+  end
+end
