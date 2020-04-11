@@ -9,8 +9,8 @@ def display_board(board)
 end
 
 
-def input_to_index(user_input)
-  return user_input.to_i - 1
+def input_to_index(input)
+  return input.to_i - 1
 end
 
 def move(board, index, value)
@@ -37,14 +37,14 @@ end
 
 def turn(board)
   puts "Please enter 1-9:"
-  
-  user_input = gets
-  index = input_to_index(user_input)
-  
+    
+  input = gets
+  index = input_to_index(input)
+      
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
-  else
+  else 
     turn(board)
   end
 end
@@ -98,11 +98,14 @@ def winner(board)
   end
 end
 
-def play()
-  input = gets
-  if !over?(board)
+def play(board)
+  while !over?(board)
+    turn(board)
     won?(board)
-    puts "Congratulation #{winner(board)}"
+      puts "Congratulation #{current_player(board)}!"
+    draw?(board)
+      puts "Cat's Game!"
+  end
 end
 
 
