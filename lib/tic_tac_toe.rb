@@ -9,11 +9,11 @@ def display_board(board)
 end
 
 
-def user_input(user_input)
+def input_to_index(user_input)
   return user_input.to_i - 1
 end
 
-def move(board, index, value="X")
+def move(board, index, value)
   return board[index] = value
 end
 
@@ -35,13 +35,60 @@ def valid_move?(board, index)
   end
 end
 
-def turn(board, index)
+def turn(board)
   puts "Please enter 1-9:"
   user_input = gets
-  index = user_input(user_input)
+  index = input_to_index(user_input)
   if valid_move?(board, index)
     move(board, index)
   else
     turn(board)
   end
 end
+
+def turn_count(board)
+  
+end
+
+def current_player(board)
+  
+end
+
+def won?(board)
+  WIN_COMBINATIONS.each do |win_combo_array|
+      if board[win_combo_array[0]] == board[win_combo_array[1]] &&  board[win_combo_array[1]] == board[win_combo_array[2]] && position_taken?(board, win_combo_array[0])
+        return win_combo_array
+      end
+  end
+  return false
+end
+
+def full?(board)
+  board.all? do |value|
+    value != " "  
+  end
+end
+
+def draw?(board)
+  full?(board) && !won?(board)
+end
+
+def over?(board)
+  won?(board) || full?(board) || draw?(board)
+end
+
+def winner(board)
+  if won?(board) && over?(board)
+    board[won?(board)[0]]
+  else
+    nil
+  end
+end
+
+
+
+
+
+
+
+
