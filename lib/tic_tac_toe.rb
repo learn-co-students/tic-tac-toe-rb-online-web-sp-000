@@ -37,21 +37,34 @@ end
 
 def turn(board)
   puts "Please enter 1-9:"
+  
   user_input = gets
   index = input_to_index(user_input)
+  
   if valid_move?(board, index)
     move(board, index)
+    display_board(board)
   else
     turn(board)
   end
 end
 
 def turn_count(board)
-  
+  counter = 0
+  board.each do |position|
+    if position == "X" || position == "O"
+      counter += 1
+    end
+  end
+  return counter
 end
 
 def current_player(board)
-  
+  if turn_count(board) % 2 == 0
+    return "X"
+  else
+    return "O"
+  end
 end
 
 def won?(board)
@@ -85,6 +98,12 @@ def winner(board)
   end
 end
 
+def play()
+  input = gets
+  if !over?(board)
+    won?(board)
+    puts "Congratulation #{winner(board)}"
+end
 
 
 
