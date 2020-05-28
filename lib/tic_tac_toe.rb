@@ -1,7 +1,5 @@
 require 'pry'
 
-board = [" ", " ", " ", " ", " ", " ", " ", " ", "X"]
-
 WIN_COMBINATIONS = [
   [0,1,2], # top row win
   [3,4,5], # middle row win
@@ -100,15 +98,12 @@ def winner(board) #board state is won & returns winner "X" or "O"
   end
 end
 
+
 def play(board)
-  #input = gets
-  while !over?(board) #== false - the game isn't over
-    turn(board)
+    turn(board) until over?(board)
       if winner(board)
         puts "Congratulations #{winner(board)}!"
-        binding.pry
+      else
+        puts "Cat's Game!"
       end
-#binding.pry
-  end
 end
-#binding.pry
