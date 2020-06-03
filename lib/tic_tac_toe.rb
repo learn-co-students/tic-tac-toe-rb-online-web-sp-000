@@ -34,43 +34,18 @@ def position_taken?(board, user_input)
 end
 
 def valid_move?(board, user_input)
-  if board[user_input] == "X" || board[user_input] == "O" || !user_input.between?(0, 8)
+  if position_taken?(board, user_input) || !user_input.between?(0, 8)
     return false
   else
     return true
   end
 end
 
-# def valid_move?(board, user_input)
-#   if position_taken?(board, user_input) || !user_input.between?(0, 8)
-#     return false
-#   else
-#     return true
-#   end
-# end
-
-# def current_player
-#   turn_count.even == true ? "X" : "O"
-# end
-#
-# def turn_count(board)
-#   counter = 0
-#
-#   board.each do |turn|
-#     if turn == "X" || turn == "O"
-#       counter += 1
-#       puts "#{counter}"
-#     end
-#   end
-#
-#   counter
-# end
-
 def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.chomp
   index = input_to_index(user_input)
-  if valid_move?(board, index) == current_player(board)
+  if valid_move?(board, index)
     move(board, index, token)
     puts display_board(board)
   else
