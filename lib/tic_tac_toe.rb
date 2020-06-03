@@ -33,37 +33,50 @@ def position_taken?(board, user_input)
   end
 end
 
-def valid_move?(board, location)
-  if board[location] == "X" || board[location] == "O" || !location.between?(0, 8)
-    return false
-  else
-    return true
-  end
-end
-
-# def valid_move?(board, user_input)
-#   if position_taken?(board, user_input) || !user_input.between?(0, 8)
+# def valid_move?(board, location)
+#   if board[location] == "X" || board[location] == "O" || !location.between?(0, 8)
 #     return false
 #   else
 #     return true
 #   end
 # end
 
-def current_player
-  turn_count.even == true ? "X" : "O"
+def valid_move?(board, user_input)
+  if position_taken?(board, user_input) || !user_input.between?(0, 8)
+    return false
+  else
+    return true
+  end
 end
 
+# def current_player
+#   turn_count.even == true ? "X" : "O"
+# end
+#
+# def turn_count(board)
+#   counter = 0
+#
+#   board.each do |turn|
+#     if turn == "X" || turn == "O"
+#       counter += 1
+#       puts "#{counter}"
+#     end
+#   end
+#
+#   counter
+# end
+
 def turn(board)
-  puts "Please enter 1-9:"  # Asking the user for their move by position 1-9.
-  user_input = gets.chomp   # Receiving the user input.
-  index = input_to_index(user_input)     # Convert user input to an index
-  if valid_move?(board, user_input) == true && current_player == "X"
+  puts "Please enter 1-9:"
+  user_input = gets.chomp
+  index = input_to_index(user_input)
+  if valid_move?(board, index) == true
     move(board, index, token = "X")
-    puts display_board
-  elsif valid_move?(board, user_input) == true && current_player == "O"
+    puts display_board(board)
+  elsif valid_move?(board, index) == true
     move(board, index, token = "O")
-    puts display_board
-  elsif valid_move?(board, user_input) == false
+    puts display_board(board)
+  elsif valid_move?(board, index) == false
     puts "Please enter 1-9:"
     user_input = gets.chomp
   else
@@ -71,6 +84,67 @@ def turn(board)
     user_input = gets.chomp
   end
 end
-# If the move is valid, make the move and display board.
-# Otherwise (that is, if the move is invalid) ask for a new position until a valid move is received.
-#
+
+def turn_count(turn)
+  counter = 0
+
+  turn.each do |turn|
+    if turn == "X" || turn == "O"
+      counter += 1
+      puts "#{counter}"
+    end
+  end
+  counter
+end
+
+def current_player(board)
+  turn_count(board).even? == true ? "X" : "O"
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |combo|
+    position_taken?(board, combo[0]) && board[combo[0]] == board[combo[1]] && board[combo[1]] == board[combo[2]]
+  end
+end
+
+def full?(board)
+  board.all? do |index|
+    index == "X" || index == "O"
+  end
+end
+
+def draw?(board)
+  if won?(board)
+    return false
+  elsif full?(board)
+    return true
+  else
+    return false
+  end
+end
+
+def over?(board)
+  won?(board) || draw?(board)
+end
+
+def winner(board)
+  winning_combo = won?(board)
+  if winning_combo
+    return board[winning_combo[0]]
+  end
+end
+
+def play(board)
+  input = gets
+  while over?(board) == false
+    turn(board)
+  end
+
+  if draw?(board)
+    puts "That's Game!"
+  elsif winner(board) == "X"
+    puts "Congradulations X!"
+  elsif winner(board) == "O"
+    puts "Congradulations O!"
+  end
+end
