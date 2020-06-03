@@ -70,18 +70,11 @@ def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.chomp
   index = input_to_index(user_input)
-  if valid_move?(board, index) == true
-    move(board, index, token = "X")
+  if valid_move?(board, index) == current_player(board)
+    move(board, index, token)
     puts display_board(board)
-  elsif valid_move?(board, index) == true
-    move(board, index, token = "O")
-    puts display_board(board)
-  elsif valid_move?(board, index) == false
-    puts "Please enter 1-9:"
-    user_input = gets.chomp
   else
-    puts "Please enter 1-9:"
-    user_input = gets.chomp
+    turn(board)
   end
 end
 
@@ -135,15 +128,16 @@ def winner(board)
 end
 
 def play(board)
+
   while over?(board) == false
     turn(board)
   end
 
   if draw?(board)
-    puts "That's Game!"
+    puts "Cat's Game!"
   elsif winner(board) == "X"
-    puts "Congradulations X!"
+    puts "Congratulations X!"
   elsif winner(board) == "O"
-    puts "Congradulations O!"
+    puts "Congratulations O!"
   end
 end
