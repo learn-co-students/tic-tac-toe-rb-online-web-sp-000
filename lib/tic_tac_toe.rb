@@ -33,21 +33,21 @@ def position_taken?(board, user_input)
   end
 end
 
-# def valid_move?(board, location)
-#   if board[location] == "X" || board[location] == "O" || !location.between?(0, 8)
-#     return false
-#   else
-#     return true
-#   end
-# end
-
 def valid_move?(board, user_input)
-  if position_taken?(board, user_input) || !user_input.between?(0, 8)
+  if board[user_input] == "X" || board[user_input] == "O" || !user_input.between?(0, 8)
     return false
   else
     return true
   end
 end
+
+# def valid_move?(board, user_input)
+#   if position_taken?(board, user_input) || !user_input.between?(0, 8)
+#     return false
+#   else
+#     return true
+#   end
+# end
 
 # def current_player
 #   turn_count.even == true ? "X" : "O"
