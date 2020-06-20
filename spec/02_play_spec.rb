@@ -15,7 +15,7 @@ describe './lib/tic_tac_toe.rb' do
     it 'checks if the game is over after every turn' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
-      allow(self).to receive(:gets).and_return("1", "2", "4", "5", "7")
+      allow(self).to receive(:gets).and_return("1", "2", "3")
 
       expect(self).to receive(:over?).at_least(:twice).and_return(false, false, true)
 
