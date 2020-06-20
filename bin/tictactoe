@@ -8,3 +8,22 @@ puts "Welcome to Tic Tac Toe!"
 display_board(board)
 
 play(board)
+
+def play(board)
+  #asks for players input on a turn of the Game
+  puts "Please input your turn"
+  turn = gets.strip
+  #checks if the game is over after every turn
+  over?(board)
+  over?(board)
+  over?(board)
+  #plays the first turn of the game
+  #plays the first few turns of the game
+  # checks if the game is won after every turn
+  # checks if game is draw after every turn
+  # congratulates the winner X
+  #congradulates winner O
+  # prints "cat's a game" on a draw
+  #plays through an entire game
+
+end
