@@ -239,13 +239,13 @@ describe './lib/tic_tac_toe.rb' do
 
   describe '#winner' do
     it 'return X when X won' do
-      board = ['X', ' ', ' ', ' ', 'X', ' ', ' ', ' ', 'X']
+      board = ['X', 'O', ' ', ' ', 'X', ' ', ' ', 'O', 'X']
 
       expect(winner(board)).to eq('X')
     end
 
     it 'returns O when O won' do
-      board = ['X', 'O', ' ', ' ', 'O', ' ', ' ', 'O', 'X']
+      board = ['X', 'O', ' ', 'X', 'O', ' ', ' ', 'O', 'X']
 
       expect(winner(board)).to eq('O')
     end
