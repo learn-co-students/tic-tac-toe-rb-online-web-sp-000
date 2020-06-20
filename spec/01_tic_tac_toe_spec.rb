@@ -18,7 +18,7 @@ describe './lib/tic_tac_toe.rb' do
 
   describe '#display_board' do
     it 'prints arbitrary arrangements of the board' do
-      board = %w[X X X X O O X O O]
+      board = ["X", "X", "X", "X", "O", "O", "X", "O", "O"]
 
       output = capture_puts { display_board(board) }
 
@@ -28,7 +28,7 @@ describe './lib/tic_tac_toe.rb' do
       expect(output).to include('-----------')
       expect(output).to include(' X | O | O ')
 
-      board = %w[X O X O X X O X O]
+      board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       output = capture_puts { display_board(board) }
 
@@ -157,13 +157,13 @@ describe './lib/tic_tac_toe.rb' do
 
   describe '#won?' do
     it 'returns false for a draw' do
-      board = %w[X O X O X X O X O]
+      board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(won?(board)).to be_falsey
     end
 
     it 'returns true for a win' do
-      board = %w[X O X O X X O O X]
+      board = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
 
       expect(won?(board)).to be_truthy
     end
@@ -171,7 +171,7 @@ describe './lib/tic_tac_toe.rb' do
 
   describe '#full?' do
     it 'returns true for a draw' do
-      board = %w[X O X O X X O X O]
+      board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(full?(board)).to be_truthy
     end
@@ -185,27 +185,27 @@ describe './lib/tic_tac_toe.rb' do
 
   describe '#draw?' do
     it 'calls won?' do
-      board = %w[X O X O X X O X O]
+      board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(self).to receive(:won?).with(board)
       draw?(board)
     end
 
     it 'calls full?' do
-      board = %w[X O X O X X O X O]
+      board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(self).to receive(:full?).with(board)
       draw?(board)
     end
 
     it 'returns true for a draw' do
-      board = %w[X O X O X X O X O]
+      board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(draw?(board)).to be_truthy
     end
 
     it 'returns false for a won game' do
-      board = %w[X O X O X X O O X]
+      board = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
 
       expect(draw?(board)).to be_falsey
     end
@@ -219,13 +219,13 @@ describe './lib/tic_tac_toe.rb' do
 
   describe '#over?' do
     it 'returns true for a draw' do
-      board = %w[X O X O X X O X O]
+      board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
       expect(over?(board)).to be_truthy
     end
 
     it 'returns true for a won game' do
-      board = %w[X O X O X X O O X]
+      board = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
 
       expect(over?(board)).to be_truthy
     end
