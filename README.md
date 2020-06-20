@@ -47,6 +47,17 @@ and Pasting."
 
 #### Gemfile
 
+There are three test files that should be completed in order.
+`01_tic_tac_toe_spec.rb` sets tests for our helper methods. `02_play_spec.rb`
+tests the main `#play` method. `03_cli_spec.rb` tests the CLI.
+
+### Your Tic Tac Toe Game
+
+There are infinite ways to build Tic Tac Toe. We, however, have been building up
+to a very specific structure with the methods we've been building throughout
+this course. We'll be using many of those methods here. These methods represent
+the basic requirements and logic of the game.
+
 This file sets up gems for our project and can mostly be ignored. Make sure to
 run `bundle` before starting this project so that you have all the required
 gems.
@@ -60,17 +71,6 @@ This is our main executable and will be how we run our game.
 All of our game methods will be coded here.
 
 #### `spec`
-
-There are three test files that should be completed in order.
-`01_tic_tac_toe_spec.rb` sets tests for our helper methods. `02_play_spec.rb`
-tests the main `#play` method. `03_cli_spec.rb` tests the CLI.
-
-### Your Tic Tac Toe Game
-
-There are infinite ways to build Tic Tac Toe. We, however, have been building up
-to a very specific structure with the methods we've been building throughout
-this course. We'll be using many of those methods here. These methods represent
-the basic requirements and logic of the game.
 
 Why build and utilize the helper methods we've been constructing?
 
