@@ -10,6 +10,7 @@ describe './lib/tic_tac_toe.rb' do
       expect(self).to receive(:gets).at_least(:once).and_return("1")
 
       play(board)
+      input = gets
     end
 
     it 'checks if the game is over after every turn' do
@@ -46,7 +47,7 @@ describe './lib/tic_tac_toe.rb' do
 
       play(board)
 
-      expect(board).to match_array(["X", "O", "X", " ", " ", " ", " ", " ", " "])
+      expect(board).to match_array([" ", " ", " ", " ", " ", " ", "O", "X", "X"])
     end
 
     it 'checks if the game is won after every turn' do
