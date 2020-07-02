@@ -8,3 +8,13 @@ puts "Welcome to Tic Tac Toe!"
 display_board(board)
 
 play(board)
+
+
+
+#below here is copy and pasted
+
+#index = input_to_index(input)
+
+#move(board, index, "X")
+
+#display_board(board)
