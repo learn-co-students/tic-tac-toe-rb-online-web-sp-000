@@ -91,7 +91,8 @@ end
 def draw?(board)
   if won?(board) == nil &&
     full?(board) == true
-    return true
+    puts "Cat's Game!"
+    return true 
   elsif 
     false 
   end
@@ -133,7 +134,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -158,16 +159,12 @@ def current_player(board)
   end
 end
 
-# def play(board)
-#   counter = 0
-#   until counter == 9
-#     turn(board)
-#     counter += 1
-#   end
-# end
-
 def play(board)
-  input = gets
-  until over?
+  turn(board) until over?(board)
+  if winner(board) == "X"
+  puts "Congratulations X!"
+  elsif winner(board) == "O"
+  puts "Congratulations O!"
+  end
 end
-end
+
