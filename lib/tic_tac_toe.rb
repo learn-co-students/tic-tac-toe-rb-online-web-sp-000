@@ -36,7 +36,7 @@ def valid_move?(board, index)
 end
 
 def turn_count(board)
-	board.count {|position| position == "X" || position == "O"}
+	board.count {|position| position != " "}
 end
 
 def current_player(board)
@@ -68,7 +68,7 @@ def won?(board)
 end
 
 def full?(board)
-	board.none? {|position| position == " "}
+	board.none?(" ")
 end
 
 def draw?(board)
