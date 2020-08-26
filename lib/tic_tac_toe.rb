@@ -110,6 +110,7 @@ def winner(board)
   end
 end
 
+
 def play(board)
   until over?(board) == true
     turn(board)
@@ -123,3 +124,11 @@ def play(board)
     puts "Cat's Game!"
   end
 end
+
+
+#   counter = 1
+#   while counter <10
+#     turn(board)
+#     counter += 1
+#   end
+# end
