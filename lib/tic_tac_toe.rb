@@ -1,3 +1,5 @@
+
+
 WIN_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -64,7 +66,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index, "X")
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -109,11 +111,11 @@ def play(board)
         turn(board)
     end
     # if game won
-    ## congratulate th winner
+    ## congratulate the winner
     # else if the game was a draw
     ## tell the players it has been a draw
     if won?(board)
-        puts "Congratulations!"
+        puts "Congratulations #{winner(board)}!"
     elsif draw?(board)
         puts "Cat's Game!"
     end
