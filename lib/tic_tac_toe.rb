@@ -23,16 +23,12 @@ def input_to_index(input)
     input.to_i - 1
 end
 
-def move(board, index, player)
-  board[index] = player
+def move(board, index, current_player)
+  board[index] = current_player
 end
 
 def position_taken?(board, index)
-    if board[index] == " "
-        false
-    elsif board[index] == ""
-        false
-    elsif board[index] == nil
+    if board[index] == " " || board[index] == "" || board[index] == nil
         false
     elsif board[index] == "X" || board[index] == "O"
         true
@@ -101,8 +97,8 @@ end
 def winner(board)
   # returns "X" or "O" if won? 
   # # else returns nil
-  if  winner = won?(board)
-    board[winner[0]]
+  if  win_combo = won?(board)
+    board[win_combo[0]]
   end
 end
 
@@ -123,13 +119,6 @@ end
                
     
     
-    # until over?(board)
-    #     turn(board)
-    # end
-    # if won?(board)
-    #     puts " Congratulations you won!"
-    # elsif draw?(board)
-    #     puts "It's a draw!"
-    # end
+   
 
 
