@@ -23,8 +23,8 @@ def input_to_index(user_input)
 end
 
 
-def move(board, position, char)
-  board[position] = char
+def move(board, index, token)
+  board[index] = token
 end
 
 def valid_move?(board, index)
@@ -48,7 +48,8 @@ def turn(board)
   user_input = gets.strip.to_i
   index = input_to_index(user_input)
   if valid_move?(board, index)
-    move(board, index, char = "X")
+    token = current_player(board)
+    move(board, index, token)
     display_board(board)
 else 
   turn(board)
@@ -111,13 +112,12 @@ def winner(board)
 end
 
 def play(board)
-  while !over?(board)
+  until over?(board)
    turn(board)
   end
   if won?(board)
-    winner = winner(board)
-    puts "Congratulations #{winner}!"
-  elsif draw?(board)
+    puts "Congratulations #{winner(board)}!"
+  else
     puts "Cat's Game!"
   end
 end
