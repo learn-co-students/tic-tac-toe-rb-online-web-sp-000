@@ -1,20 +1,20 @@
 WIN_COMBINATIONS = [
-[0,1,2],
-[3,4,5],
-[6,7,8],
-[0,3,6],
-[1,4,7],
-[2,5,8],
-[0,4,8],
-[2,4,6],
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [2,4,6],
 ]
 
 def display_board(board)
-puts " #{board[0]} | #{board[1]} | #{board[2]} "
-puts "-----------"
-puts " #{board[3]} | #{board[4]} | #{board[5]} "
-puts "-----------"
-puts " #{board[6]} | #{board[7]} | #{board[8]} "
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
 def input_to_index(input)
@@ -27,6 +27,56 @@ end
 
 def position_taken?(board, position)
   if board[position] == "" || board[position] == " "
+    false
+  else
+    true
+  end
+end
+
+def valid_move?(board, position)
+  if (board[position] == "" || board[position] == " ") && position < 9 && position > -1
+    true
+  else
+    false
+  end
+end
+
+def turn_count(board)
+  a = []
+  board.each do |item|
+    if item == "X" || item == "O"
+      a << item
+    end
+  end
+  a.size
+end
+
+def current_player(board)
+  if turn_count(board) % 2 == 0
+    "X"
+  else
+    "O"
+  end
+end
+
+def ask_for_input
+  puts "Pick a number between 1 - 9:"
+  number = input_to_index(gets.chomp.to_i)
+end
+
+def turn(board)
+  puts "Pick a number between 1 - 9:"
+  number = input_to_index(gets.chomp.to_i)
+
+  if valid_move?(board, number) == true
+    move(board, number, current_player(board))
+  else
+    ask_for_input
+  end
+end
+
+def full?(board)
+  if board.any? == "" || board.any? == " "
     false
   else
     true
