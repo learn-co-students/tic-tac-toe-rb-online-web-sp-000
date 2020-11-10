@@ -10,6 +10,18 @@
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
+
+def play(board)
+  counter = 0 
+  until counter == 9 
+  turn(board)
+    counter +=1 
+  end 
+   puts "game over" 
+end 
+
+
+
 def input_to_index(input) 
    if (1..9).cover?(input) == false 
      puts "invalid"
