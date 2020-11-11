@@ -32,11 +32,18 @@ end
  
 def move(board, index, value = "X")
   board[index] = value
+  if value != "X" && value != "O"
+    puts "Error."
 end    
     
-    
-    
-    
+def valid_move?(board, index)
+  if position_taken?(board)
+    true
+  end 
+end 
+
+
+
     def turn_count(board) 
   count = 0 
   board.each do |entry| 
