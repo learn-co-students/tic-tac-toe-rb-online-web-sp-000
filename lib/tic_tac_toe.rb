@@ -18,7 +18,7 @@ def display_board(board)
 end
 
 def input_to_index(input)
-  index = input.to_i - 1
+  input.to_i - 1
 end
 
 def move(board, index, token)
@@ -26,29 +26,21 @@ def move(board, index, token)
 end
 
 def position_taken?(board, position)
-  if board[position] == "" || board[position] == " "
-    false
-  else
-    true
-  end
+  board[position] != "" && board[position] != " "
 end
 
 def valid_move?(board, position)
-  if (board[position] == "" || board[position] == " ") && position < 9 && position > -1
-    true
-  else
-    false
-  end
+  !position_taken?(board, position) && position.between?(0, 8)
 end
 
 def turn_count(board)
-  a = []
+  a = 0
   board.each do |item|
     if item == "X" || item == "O"
-      a << item
+      a += 1
     end
   end
-  a.size
+  a
 end
 
 def current_player(board)
@@ -59,32 +51,11 @@ def current_player(board)
   end
 end
 
-def ask_for_input
-  puts "Pick a number between 1 - 9:"
-  number = input_to_index(gets.chomp.to_i)
-end
-
-def turn(board)
-  puts "Pick a number between 1 - 9:"
-  number = input_to_index(gets.chomp.to_i)
-
-  if valid_move?(board, number) == true
-    move(board, number, current_player(board))
-  else
-    ask_for_input
-  end
-end
-
 def full?(board)
-  if board.include? " "
-    false
-  else
-    true
-  end
+  !board.include? " "
 end
 
 def won?(board)
-
   WIN_COMBINATIONS.each do |win_combination|
     if (board[win_combination[0]] == "X" && board[win_combination[1]] == "X" && board[win_combination[2]] == "X") || (board[win_combination[0]] == "O" && board[win_combination[1]] == "O" && board[win_combination[2]] == "O")
 
@@ -95,19 +66,11 @@ def won?(board)
 end
 
 def draw?(board)
-  if won?(board) == false && full?(board) == true
-    true
-  else
-    false
-  end
+  !won?(board) && full?(board)
 end
 
 def over?(board)
-  if (won?(board) == true) || (full?(board) == true)
-    true
-  else
-    false
-  end
+  won?(board) || draw?(board)
 end
 
 def winner(board)
@@ -121,7 +84,27 @@ def winner(board)
   return nil
 end
 
-def play(board)
-  over?(board) == false ?
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+
+  if valid_move?(board, index)
+    move(board, index, current_player(board))
+  else
     turn(board)
+  end
+end
+
+def play(board)
+  puts "Welcome to Tic Tac Toe!"
+  until over?(board)
+    turn(board)
+  end
+
+  if draw?(board) == false
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
 end
