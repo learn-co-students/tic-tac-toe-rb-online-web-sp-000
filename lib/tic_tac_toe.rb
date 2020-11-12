@@ -118,5 +118,10 @@ def winner(board)
       return "O"
     end
   end
-  false
+  return nil
+end
+
+def play(board)
+  over?(board) == false ?
+    turn(board)
 end
