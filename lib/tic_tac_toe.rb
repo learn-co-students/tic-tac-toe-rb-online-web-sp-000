@@ -1,3 +1,4 @@
+ require_relative '../lib/tic_tac_toe.rb'
  require "pry"
     #binding.pry 
    
@@ -20,31 +21,43 @@ def play(board)
    puts "game over" 
 end 
 
-
-
-def input_to_index(input) 
-   if (1..9).cover?(input) == false 
-     puts "invalid"
-  string = input.to_i 
-  index = string - 1 
-end  
+def turn(board)
+  puts "Please enter 1-9:"
+  user_input = gets.chomp
+  index = input_to_index(user_input)
+  if valid_move?(board, index)
+    value = current_player(board)
+    move(board, index, value)
+  display_board(board)
+else 
+  turn(board)
+  end 
 end 
- 
-def move(board, index, value = "X")
+
+
+def input_to_index(user_input)
+  user_input.to_i-1 
+end 
+  
+
+def move(board, index, value)
   board[index] = value
   if value != "X" && value != "O"
     puts "Error."
-end    
-    
+  end    
+end   
+  
+
+  
 def valid_move?(board, index)
-  if position_taken?(board)
+  if index.between?(0,8) && !position_taken?(board, index)
     true
   end 
 end 
 
 
 
-    def turn_count(board) 
+def turn_count(board) 
   count = 0 
   board.each do |entry| 
     if entry == "X" || entry == "O"
@@ -59,41 +72,39 @@ def current_player(board)
   count = turn_count(board)
   if count % 2 == 0 
       turn = "X" 
-      
   else  
     turn = "O" 
   end   
-end  
-
-
+end   
+      
+      
+    def position_taken?(board, index)
+      if board[index] ==  nil || board[index] == " "
+        return false 
+      else
+      return true  
+        end 
+    end 
     
-    
-    WIN_COMBINATIONS = [ 
+   
+    WIN_COMBINATIONS = [
       [0, 1, 2],  
       [3, 4, 5],
       [6, 7, 8],
       [0, 3, 6],
       [1, 4, 7],
       [2, 5, 8],
-      [0, 4, 8],
+      [0, 4, 8], 
       [6, 4, 2],     
       ]
-      
-      
-    def position_taken?(board)
-        if !board == nil? || !board == " "
-        true 
-        end 
-    end 
-    
-    
-      def won?(board)
+  
+  def won?(board)
        WIN_COMBINATIONS.detect do |array|
        index_1 = array[0]
        index_2 = array[1]
        index_3 = array[2]
      
-     position_1 = board[index_1]
+     position_1 = board[index_1] 
      position_2 = board[index_2]
      position_3 = board[index_3]
      
@@ -107,17 +118,22 @@ end
 
      
     def full?(board) 
-      board.all?{|token| token == "X" || token == "O" || board.all? == " "}
-    end 
-    
+      if board.all?{|index| index == "X" || index == "O" || !board.all? == " "}
+        return true 
+      else
+        return false 
+    end
+  end 
     
     def draw?(board)
       if full?(board) && !won?(board)
       return true  
       elsif !full?(board) && !won?(board)
       return false 
+    else
+      return false 
     end
-    end 
+  end 
     
     
     def over?(board)
@@ -130,7 +146,5 @@ end
          if winning_value 
            board[winning_value[0]]
          end 
-    end 
-    
-     
+  end  
     
