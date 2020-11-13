@@ -114,11 +114,8 @@ end
      position_3 = board[index_3] 
      
         
-      if position_1 == position_2 && position_2 == position_3 && (position_1 == "X" || position_1 == "O")
-      return array
-     end 
-     return false 
-  end  
+      position_1 == position_2 && position_2 == position_3 && (position_1 == "X" || position_1 == "O")
+      end  
 
      
     def full?(board) 
