@@ -16,9 +16,10 @@ def play(board)
   until over?(board)
    turn(board) 
   end 
-   puts "game over {value}"
-   puts "Congratuations, player {value}"
-   puts "Cat's Game"
+   if winner(board) puts "Game over."
+   puts "Congratuations, #{winning value}""
+   if draw?(board)
+     puts "Cat's Game"
    
 end 
 end 
