@@ -114,6 +114,7 @@ end
         
       position_1 == position_2 && position_2 == position_3 && (position_1 == "X" || position_1 == "O")
       end  
+    end 
 
      
     def full?(board) 
@@ -136,4 +137,3 @@ end
            board[winning_value[0]]
          end 
   end   
-end 
