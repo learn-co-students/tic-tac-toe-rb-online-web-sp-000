@@ -13,15 +13,13 @@ end
 
 
 def play(board)
-  counter = 0 
-  until counter == 18 
-  turn(board)
-  if counter % 2 == 0 
-    then value = "O"
-    counter +=1 
+  until over?(board)
+   turn(board) 
   end 
    puts "game over {value}"
    puts "Congratuations, player {value}"
+   puts "Cat's Game"
+   
 end 
 end 
 
@@ -32,12 +30,11 @@ def turn(board)
   user_input = gets.chomp
   index = input_to_index(user_input)
   if valid_move?(board, index)
+     value = current_player(board)
     move(board, index, value = "X")
-    value = current_player(board)
-  display_board(board)
+  display_board(board) 
 else 
   turn(board)
-  
   end 
 end 
 
@@ -78,9 +75,9 @@ end
 def current_player(board) 
   count = turn_count(board)
   if count % 2 == 0 
-      turn = "X" 
+      turn = "O" 
   else  
-    turn = "O" 
+    turn = "X" 
   end   
 end   
       
