@@ -18,7 +18,7 @@ def play(board)
   end 
    if won?(board) 
      puts "Game over."
-   puts "Congratuations, #{winner}"
+   puts "Congratuations, #{winner(board)}"
    if draw?(board)
      puts "Cat's Game"
    end 
@@ -32,7 +32,7 @@ def turn(board)
   index = input_to_index(user_input)
   if valid_move?(board, index)
      value = current_player(board) 
-    move(board, index, value = "X")
+    move(board, index, value)
   display_board(board) 
 else 
   turn(board)
@@ -55,9 +55,7 @@ end
 
   
 def valid_move?(board, index)
-  if index.between?(0,8) && !position_taken?(board, index) 
-    true
-  end 
+  index.between?(0,8) && !position_taken?(board, index) 
 end 
 
 
@@ -128,7 +126,7 @@ end
     
     
 def over?(board)
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
 end 
     
     
