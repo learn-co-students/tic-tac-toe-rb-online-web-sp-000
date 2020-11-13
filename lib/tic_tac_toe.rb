@@ -16,14 +16,14 @@ def play(board)
   until over?(board)
    turn(board) 
   end 
-   if winner(board) puts "Game over."
-   puts "Congratuations, #{winning value}""
+   if won?(board) 
+     puts "Game over."
+   puts "Congratuations, #{winner}"
    if draw?(board)
      puts "Cat's Game"
-   
+   end 
+  end 
 end 
-end 
-
 
 
 def turn(board)
@@ -31,7 +31,7 @@ def turn(board)
   user_input = gets.chomp
   index = input_to_index(user_input)
   if valid_move?(board, index)
-     value = current_player(board)
+     value = current_player(board) 
     move(board, index, value = "X")
   display_board(board) 
 else 
@@ -55,7 +55,7 @@ end
 
   
 def valid_move?(board, index)
-  if index.between?(0,8) && !position_taken?(board, index)
+  if index.between?(0,8) && !position_taken?(board, index) 
     true
   end 
 end 
@@ -76,9 +76,9 @@ end
 def current_player(board) 
   count = turn_count(board)
   if count % 2 == 0 
-      turn = "O" 
+      turn = "X" 
   else  
-    turn = "X" 
+    turn = "O" 
   end   
 end   
       
@@ -116,7 +116,6 @@ end
         
       if position_1 == position_2 && position_2 == position_3 && (position_1 == "X" || position_1 == "O")
       return array
-      end 
      end 
      return false 
   end  
@@ -141,9 +140,9 @@ end
   end 
     
     
-    def over?(board)
-      won?(board) || full?(board)
-    end 
+def over?(board)
+  won?(board) || full?(board)
+end 
     
     
  def winner(board)
@@ -151,4 +150,5 @@ end
          if winning_value 
            board[winning_value[0]]
          end 
-  end  
+  end   
+end 
