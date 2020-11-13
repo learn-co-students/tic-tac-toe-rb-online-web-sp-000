@@ -119,12 +119,8 @@ end
 
      
     def full?(board) 
-      if board.all?{|index| index == "X" || index == "O" || !board.all? == " "}
-        return true 
-      else
-        return false 
-    end
-  end 
+      board.all?{|index| index == "X" || index == "O"}
+    end 
     
     def draw?(board)
        full?(board) && !won?(board)
