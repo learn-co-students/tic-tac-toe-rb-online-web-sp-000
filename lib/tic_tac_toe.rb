@@ -14,23 +14,30 @@ end
 
 def play(board)
   counter = 0 
-  until counter == 9 
+  until counter == 18 
   turn(board)
+  if counter % 2 == 0 
+    then value = "O"
     counter +=1 
   end 
-   puts "game over" 
+   puts "game over {value}"
+   puts "Congratuations, player {value}"
 end 
+end 
+
+
 
 def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.chomp
   index = input_to_index(user_input)
   if valid_move?(board, index)
+    move(board, index, value = "X")
     value = current_player(board)
-    move(board, index, value)
   display_board(board)
 else 
   turn(board)
+  
   end 
 end 
 
@@ -41,8 +48,8 @@ end
   
 
 def move(board, index, value)
-  board[index] = value
-  if value != "X" && value != "O"
+  board[index] = value 
+  if value != "X" && value != "O" 
     puts "Error."
   end    
 end   
@@ -106,7 +113,7 @@ end
      
      position_1 = board[index_1] 
      position_2 = board[index_2]
-     position_3 = board[index_3]
+     position_3 = board[index_3] 
      
         
       if position_1 == position_2 && position_2 == position_3 && (position_1 == "X" || position_1 == "O")
@@ -141,10 +148,9 @@ end
     end 
     
     
-    def winner(board)
+ def winner(board)
          winning_value = won?(board)
          if winning_value 
            board[winning_value[0]]
          end 
   end  
-    
