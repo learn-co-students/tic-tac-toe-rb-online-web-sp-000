@@ -17,19 +17,19 @@ def play(board)
    turn(board) 
  end 
    if won?(board) 
-   puts "Congratulations #{position_1}!"
+   puts "Congratulations #{board[0]}!"
+ end 
   if draw?(board)
-     puts "Cat's Game"
+     puts "Cat's Game!"
    end 
   end 
-end 
 
 
 def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.chomp
   index = input_to_index(user_input)
-  if valid_move?(board, index)
+  if valid_move?(board, index) 
      value = current_player(board) 
     move(board, index, value)
   display_board(board) 
