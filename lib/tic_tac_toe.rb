@@ -19,11 +19,12 @@ require_relative '../lib/tic_tac_toe.rb'
 	   turn(board) 
 	 end 
 	   if won?(board) 
-	   puts "Congratulations #{board[0]}!"
+	     winner(board)
+	   puts "Congratulations #{winning_value}!"
 	 end 
 	  if draw?(board)
 	     puts "Cat's Game!"
-	   end 
+	   end  
 	  end 
 	
 
@@ -55,7 +56,7 @@ require_relative '../lib/tic_tac_toe.rb'
 	  board[index] = value 
 	  if value != "X" && value != "O" 
 	    puts "Error."
-	  end    
+	  end     
 	end   
 	  
 	
