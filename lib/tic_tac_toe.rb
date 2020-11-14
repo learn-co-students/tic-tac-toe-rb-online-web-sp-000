@@ -20,7 +20,11 @@ require_relative '../lib/tic_tac_toe.rb'
 	 end 
 	   if won?(board) 
 	     winner(board)
-	   puts "Congratulations #{winning_value}!"
+	     
+	     #but you don't have to, because winner already returns the winniing 
+	     #token 3
+	     
+	   puts "Congratulations #{winner}"
 	 end 
 	  if draw?(board)
 	     puts "Cat's Game!"
