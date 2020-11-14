@@ -15,10 +15,10 @@ end
 def play(board)
   until over?(board)
    turn(board) 
-  end 
+ end 
    if won?(board) 
-   puts "Congratulations, #{winner(board)}!"
-   if draw?(board)
+   puts "Congratulations #{position_1}!"
+  if draw?(board)
      puts "Cat's Game"
    end 
   end 
@@ -39,7 +39,7 @@ else
 end 
 
 
-def input_to_index(user_input)
+def input_to_index(user_input) 
   user_input.to_i-1 
 end 
   
@@ -60,7 +60,7 @@ end
 
 
 def turn_count(board) 
-  count = 0 
+  count = 0
   board.each do |entry| 
     if entry == "X" || entry == "O"
       count +=1 
@@ -68,10 +68,9 @@ def turn_count(board)
 end 
 count 
 end 
- 
 
 def current_player(board) 
-  count = turn_count(board)
+  count = turn_count(board) 
   if count % 2 == 0 
       turn = "X" 
   else  
