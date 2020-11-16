@@ -18,19 +18,16 @@ require_relative '../lib/tic_tac_toe.rb'
 	  until over?(board)
 	   turn(board) 
 	 end 
-	   if won?(board) 
-	     winner(board)
-	     
+	 if won?(board)
 	     #but you don't have to, because winner already returns the winniing 
-	     #token 3
+	     #token 
 	     
-	   puts "Congratulations #{winner}"
-	 end 
+	   puts "Congratulations #{index}!"
 	  if draw?(board)
 	     puts "Cat's Game!"
-	   end  
+	   end 
 	  end 
-	
+	end 
 
 	
 
@@ -149,8 +146,8 @@ require_relative '../lib/tic_tac_toe.rb'
 	    
 	 def winner(board)
 	         winning_value = won?(board)
-	         if winning_value 
-	           board[winning_value[0]]
-	         end 
-	  end   
+	         #if winning_value 
+	         #  board[winning_value[0]]
+	         #end 
+	  end    
 
