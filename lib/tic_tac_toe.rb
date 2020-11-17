@@ -3,6 +3,19 @@ require_relative '../lib/tic_tac_toe.rb'
 	    #binding.pry 
 	   
 	   
+ WIN_COMBINATIONS = [
+	      [0, 1, 2],  
+	      [3, 4, 5],
+	      [6, 7, 8],
+	      [0, 3, 6],
+	      [1, 4, 7],
+	      [2, 5, 8],
+	      [0, 4, 8], 
+	      [6, 4, 2]   
+	      ]
+	   
+	   
+	   
 	 def display_board(board)
 	  puts " #{board[0]} | #{board[1]} | #{board[2]} "
 	  puts "-----------"
@@ -16,22 +29,19 @@ require_relative '../lib/tic_tac_toe.rb'
 
 	def play(board)
 	  until over?(board)
-	   turn(board) 
-	 end 
+	   turn(board)  
+	 end
 	 if won?(board)
-	     #but you don't have to, because winner already returns the winniing 
-	     #token 
-	     
-	   puts "Congratulations #{index}!"
-	  if draw?(board)
-	     puts "Cat's Game!"
+	   puts "Congratulations #{winner(board)}!"
+	 end 
+	   if draw?(board)
+	     puts "Cat's Game!" 
 	   end 
-	  end 
 	end 
 
 	
 
-	def turn(board)
+	def turn(board) 
 	  puts "Please enter 1-9:"
 	  user_input = gets.chomp
 	  index = input_to_index(user_input)
@@ -39,7 +49,7 @@ require_relative '../lib/tic_tac_toe.rb'
 	     value = current_player(board) 
 	    move(board, index, value)
 	  display_board(board) 
-	else 
+	else  
 	  turn(board)
 	  end 
 	end 
@@ -80,13 +90,13 @@ require_relative '../lib/tic_tac_toe.rb'
 	    end 
 	end 
 	count 
-	end 
-	
+end 
+
 
 	def current_player(board) 
 	  count = turn_count(board) 
 	  if count % 2 == 0 
-	      turn = "X" 
+	      turn = "X"  
 	  else  
 	    turn = "O" 
 	  end   
@@ -102,16 +112,7 @@ require_relative '../lib/tic_tac_toe.rb'
 	    end 
 	    
 	   
-	    WIN_COMBINATIONS = [
-	      [0, 1, 2],  
-	      [3, 4, 5],
-	      [6, 7, 8],
-	      [0, 3, 6],
-	      [1, 4, 7],
-	      [2, 5, 8],
-	      [0, 4, 8], 
-	      [6, 4, 2],     
-	      ]
+	   
 	  
 	  def won?(board)
 	       WIN_COMBINATIONS.detect do |array|
@@ -125,7 +126,7 @@ require_relative '../lib/tic_tac_toe.rb'
 	     
 	        
 	      position_1 == position_2 && position_2 == position_3 && (position_1 == "X" || position_1 == "O")
-	      end  
+	      end   
 	    end 
 	
 
@@ -146,8 +147,7 @@ require_relative '../lib/tic_tac_toe.rb'
 	    
 	 def winner(board)
 	         winning_value = won?(board)
-	         #if winning_value 
-	         #  board[winning_value[0]]
-	         #end 
-	  end    
-
+	         if winning_value 
+	           board[winning_value[0]]
+	         end 
+	  end 
