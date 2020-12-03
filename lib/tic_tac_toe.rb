@@ -53,7 +53,8 @@ def turn(board)
   if valid_move?(board, index) 
     move(board, index, player_char)
     display_board(board)
-  else
+  else 
+    puts "Please enter a valid move."
     turn(board)
     end
 end 
