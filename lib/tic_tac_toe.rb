@@ -21,18 +21,20 @@ def input_to_index(user_input)
         converted_input = user_input.to_i - 1
 end
 
-def move(array, index, character)
-        array[index] = character
+def move(board, index, player_token)    
+    board[index] = player_token
 end
 
 def position_taken?(board, index)
     !(board[index].nil? || board[index] == " ")
-  end
+end
 
 
 def valid_move?(board, index)
     if index.between?(0, 8) && !position_taken?(board, index) 
         return true
+    else 
+        return false
     end
 
 end
@@ -42,12 +44,12 @@ def turn(board)
     input = gets.strip
     index = input_to_index(input)
     if valid_move?(board, index)
-      move(board, index)
+      move(board, index, current_player(board))
       display_board(board)
     else
       turn(board)
     end
-  end
+end
 
 
 def won?(board)
@@ -73,26 +75,42 @@ end
 def winner(board)
     if winning_combo = won?(board)
       board[winning_combo.first]
-    else
-
     end
+end
 
-    def turn_count(board)
-        counter = 0
-        board.each do |positions|
-            if positions == "X" || positions == "O"
-                counter += 1
-           end
+def turn_count(board)
+    counter = 0
+    board.each do |positions|
+        if positions == "X" || positions == "O"
+            counter += 1
         end
-        return counter
     end
+    return counter
+end
 
 def current_player(board)
-    if turn_count(board).even
+    if turn_count(board).even?
         return "X"
-    else
+    elsif
+        turn_count(board).odd?
         return "O"
     end
 end
+
+def
+    play(board)
+    while !over?(board)
+        turn(board)
+    end
+    if winner(board)
+        puts "Congratulations #{winner(board)}!"
+    elsif
+        draw?(board)
+        puts "Cat's Game!"
+    end
+        
+
+
+
 end
 
