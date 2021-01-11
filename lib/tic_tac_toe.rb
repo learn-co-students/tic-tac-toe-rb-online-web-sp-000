@@ -114,7 +114,7 @@ end
 def play(board)
   while over?(board) == false
     turn(board)
-    over?(board)
+    #over?(board)
     #puts "#{board}"
   end
   if winner(board) == "X"
