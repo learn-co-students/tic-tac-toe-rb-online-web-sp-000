@@ -97,7 +97,7 @@ def draw?(board)
 end
 
 def over?(board)
-  draw?(board) || won?(board) != false #if there is a draw or a winner then return true
+  draw?(board) || won?(board) #if there is a draw or a winner then return true
 end
 
 
@@ -115,7 +115,6 @@ def play(board)
   while over?(board) == false
     turn(board)
     over?(board)
-    #puts "#{over?(board)}"
     #puts "#{board}"
   end
   if winner(board) == "X"
@@ -127,4 +126,5 @@ def play(board)
   else
   end
 end
-#play(board)
+#puts "#{play(board)}"
+#lay(board)
