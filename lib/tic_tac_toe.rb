@@ -95,9 +95,7 @@ end
 def draw?(board)
   if !won?(board) && full?(board)
     return true
-  elsif!full?(board) && !won?(board)
-    return false
-  else won?(board)
+  else
     return false
   end
 end
@@ -111,14 +109,6 @@ end
 def winner(board)
   if won?(board)
     return board[won?(board)[0]]
-  end
-end
-
-def play(board)
-  counter = 0
-  until counter == 9
-    turn(board)
-    counter += 1
   end
 end
 
