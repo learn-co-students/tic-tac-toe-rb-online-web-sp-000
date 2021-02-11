@@ -1,0 +1,32 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/brainy-algorithm-1585/tic-tac-toe-rb-online-web-sp-000/lib/tic_tac_toe.rb": [
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        3,
+        3,
+        3,
+        3,
+        3,
+        null,
+        null,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1613082254
+  }
+}
