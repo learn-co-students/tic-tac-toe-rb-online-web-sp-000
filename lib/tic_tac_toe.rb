@@ -31,8 +31,10 @@ def valid_move?(board, index)
   end
 end
 
-def turn_count?(board)
-  count = (board.count("X") + board.count("O"))
-  return count
+def turn_count(board)
+  (board.count("X") + board.count("O"))
 end
 
+def current_player(board)
+  turn_count(board).even? ? "X" : "O"
+end

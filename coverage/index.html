@@ -14,14 +14,14 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-03-25T21:52:27+00:00">2021-03-25T21:52:27+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-03-25T22:10:42+00:00">2021-03-25T22:10:42+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">94.74%</span></span>
+    (<span class="covered_percent"><span class="green">100.0%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -32,9 +32,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>1</b> files in total.
-    <b>19</b> relevant lines. 
-    <span class="green"><b>18</b> lines covered</span> and
-    <span class="red"><b>1</b> lines missed </span>
+    <b>21</b> relevant lines. 
+    <span class="green"><b>21</b> lines covered</span> and
+    <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,11 +52,11 @@
       
       <tr>
         <td class="strong"><a href="#6bea33164c5f1690cf8e44067bb1dc651d68429a" class="src_link" title="lib/tic_tac_toe.rb">lib/tic_tac_toe.rb</a></td>
-        <td class="green strong">94.74 %</td>
-        <td>39</td>
-        <td>19</td>
-        <td>18</td>
-        <td>1</td>
+        <td class="green strong">100.0 %</td>
+        <td>40</td>
+        <td>21</td>
+        <td>21</td>
+        <td>0</td>
         <td>2.6</td>
       </tr>
       
@@ -79,11 +79,11 @@
         <div class="source_table" id="6bea33164c5f1690cf8e44067bb1dc651d68429a">
   <div class="header">
     <h3>lib/tic_tac_toe.rb</h3>
-    <h4><span class="green">94.74 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>19</b> relevant lines. 
-      <span class="green"><b>18</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
+      <b>21</b> relevant lines. 
+      <span class="green"><b>21</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -291,37 +291,43 @@
         <li class="covered" data-hits="1" data-linenumber="34">
           <span class="hits">1</span>
           
-          <code class="ruby">def turn_count?(board)</code>
+          <code class="ruby">def turn_count(board)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="35">
+        <li class="covered" data-hits="2" data-linenumber="35">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">  board.count(&quot;X&quot;) + board.count(&quot;O&quot;)</code>
+          <code class="ruby">  (board.count(&quot;X&quot;) + board.count(&quot;O&quot;))</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
           
           
-          <code class="ruby"> # (board.select {|position| position == (&quot;X&quot; || &quot;O&quot;)}).count </code>
+          <code class="ruby">end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="37">
           
           
-          <code class="ruby">  </code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="covered" data-hits="1" data-linenumber="38">
+          <span class="hits">1</span>
+          
+          <code class="ruby">def current_player(board)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="39">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  turn_count(board).even? ? &quot;X&quot; : &quot;O&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
           
           
           <code class="ruby">end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="39">
-          
-          
-          <code class="ruby"></code>
         </li>
       
     </ol>
