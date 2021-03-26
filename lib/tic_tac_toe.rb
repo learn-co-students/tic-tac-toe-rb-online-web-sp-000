@@ -92,7 +92,6 @@ def winner(board)
 end
 
 def play(board)
-<<<<<<< HEAD
   until over?(board)
   turn(board)
   end
@@ -101,13 +100,12 @@ def play(board)
   else
     puts "Cat's Game!"
   end 
-=======
+
   turn(board)
   if over?(board)
     winner(board)
   else
     turn(board)
   end
->>>>>>> 17c3b7b79639537b1031e0f4e6608eadfbd0ee4f
 end
   
