@@ -15,7 +15,7 @@ def input_to_index(input)
   index = input.to_i - 1
 end
 
-def move(board, index, character = current_player(board))
+def move(board, index, character)
   board[index] = character
 end
 
@@ -44,7 +44,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
     puts "Sorry that move is not possible"
@@ -91,4 +91,14 @@ def winner(board)
   end
 end
 
-
+def play(board)
+  until over?(board)
+  turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  else
+    puts "Cat's Game!"
+  end 
+end
+  
