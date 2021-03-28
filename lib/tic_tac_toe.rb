@@ -145,8 +145,6 @@ end
 
 def play
   until over?(board) == true do
-  turn
-end
     turn(board)
   end
   if won?(board) == true
