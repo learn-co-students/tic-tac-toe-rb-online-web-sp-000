@@ -155,7 +155,3 @@ def play(board)
     #do nothing
   end
 end
-
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-
-play(board)
