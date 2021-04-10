@@ -90,6 +90,11 @@ def over?(board)
 end
 
 def winner(board)
+    if draw?(board
+        return nil
+    elsif won?(board)
+        return boar[won?(board)[0]]
+    end
     # return X when X won
     # returns O when O won
     # returns nil when no winner
