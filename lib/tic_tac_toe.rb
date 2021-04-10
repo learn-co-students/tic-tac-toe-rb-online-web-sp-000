@@ -90,10 +90,7 @@ def over?(board)
 end
 
 def winner(board)
-    playerCell = won?(board)
-    if draw?(board)
-        return nil
-    else
-        return playerCell[0]
-    end
+    # return X when X won
+    # returns O when O won
+    # returns nil when no winner
 end
