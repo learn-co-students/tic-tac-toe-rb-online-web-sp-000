@@ -84,3 +84,16 @@ def draw?(board)
         false
     end
 end
+
+def over?(board)
+    draw?(board) ? true : won?(board) ? true : false
+end
+
+def winner(board)
+    playerCell = won?(board)
+    if draw?(board)
+        return nil
+    else
+        return playerCell[0]
+    end
+end
