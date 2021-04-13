@@ -2,6 +2,8 @@
   "RSpec": {
     "coverage": {
       "/Users/tiff/dev/tic-tac-toe-rb-online-web-sp-000/lib/tic_tac_toe.rb": [
+        1,
+        null,
         null,
         1,
         null,
@@ -59,7 +61,14 @@
         null,
         1,
         60,
+        60,
         480,
+        27,
+        null,
+        null,
+        60,
+        null,
+        null,
         null,
         null,
         null,
@@ -91,6 +100,6 @@
         null
       ]
     },
-    "timestamp": 1618193190
+    "timestamp": 1618347964
   }
 }

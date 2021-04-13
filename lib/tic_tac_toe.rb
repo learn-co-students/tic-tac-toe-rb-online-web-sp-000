@@ -1,3 +1,5 @@
+require "pry"
+
 WIN_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -54,10 +56,20 @@ def turn(board)
 end
 
 def won?(board)
-  WIN_COMBINATIONS.select do |combo|
-    board[combo[0]] != " " && board[combo[0]] == board[combo[1]] && board[combo[1]] == board[combo[2]]
-  end[0]
+  win_combo = []
+  WIN_COMBINATIONS.each do |combo|
+    if board[combo[0]] != " " && board[combo[0]] == board[combo[1]] && board[combo[1]] == board[combo[2]]
+      win_combo = combo
+    end
+  end
+    win_combo.empty? ? nil : win_combo
 end
+
+# def won?(board)
+#   WIN_COMBINATIONS.select do |combo|
+#     board[combo[0]] != " " && board[combo[0]] == board[combo[1]] && board[combo[1]] == board[combo[2]]
+#   end[0]
+# end
 
 def full?(board)
   board.all? { |position| position == "X" || position == "O" }
