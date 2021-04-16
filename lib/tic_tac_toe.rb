@@ -56,13 +56,13 @@ def turn(board)
 end
 
 def won?(board)
-  win_combo = []
+  win_combo = nil
   WIN_COMBINATIONS.each do |combo|
     if board[combo[0]] != " " && board[combo[0]] == board[combo[1]] && board[combo[1]] == board[combo[2]]
       win_combo = combo
     end
   end
-    win_combo.empty? ? nil : win_combo
+  win_combo
 end
 
 # def won?(board)
