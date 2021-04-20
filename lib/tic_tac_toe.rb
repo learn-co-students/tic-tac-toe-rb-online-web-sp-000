@@ -76,13 +76,23 @@ puts "Please select a number between 1-9:"
 end
 
 def won?(board)
-  
-  
+
+  WIN_COMBINATIONS.each do |combination|
+    
+    win_index1 = combination[0]   #win_index1 = 0
+    win_index2 = combination[1]   #win_index1 = 4
+    win_index3 = combination[2]   #win_index1 = 8
+    
+    position_1 = board[win_index1] #value at the board 
+    position_2 = board[win_index2]
+    position_3 = board[win_index3]
+    
+    if position_1 == position_2 && position_2 == position_3 && position_taken?(board, win_index1)
+      return combination
+    end
+  end
+  return false
 end
 
- 
- 
- 
-  
-  
+
   
