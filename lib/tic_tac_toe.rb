@@ -1,4 +1,4 @@
-require "pry" #use this to test your code as you are going to exit type quit! or control+C
+require "pry" 
 
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -12,7 +12,7 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player = "X")
+def move(board, index, current_player)
   board[index] = current_player
 end
 
@@ -25,18 +25,10 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
-  end
-end
-
-def play(board)
-  counter=0
-  until counter==9
-    turn(board)
-    counter += 1
   end
 end
 
@@ -91,5 +83,16 @@ end
 def winner(board)
   if won?(board)
     return board[won?(board)[0]] 
+  end
+end
+
+def play(board)
+  until over?(board) do
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  else draw?(board)
+    puts "Cat's Game!"
   end
 end
