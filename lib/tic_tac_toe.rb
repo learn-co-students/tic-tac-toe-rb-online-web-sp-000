@@ -57,7 +57,7 @@ def current_player(board)
 end
 
 def turn(board)
-  puts "Please enter a number that is 1-9:"
+  puts "Please enter a number between 1-9:"
   input = gets.chomp()
   index = input_to_index(input)
   if valid_move?(board, index)
