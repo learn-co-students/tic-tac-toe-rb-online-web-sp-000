@@ -107,8 +107,8 @@ end
 
 def play(board)
   turn(board) until over?(board)
-  if winner(board)
-    puts "Congratulations #{winner}"
+  if won?(board)
+    puts "Congratulations #{won?}"
     elsif
     over?(board)
   end
