@@ -57,7 +57,7 @@ def current_player(board)
 end
 
 def turn(board)
-  puts "Please enter 1-9:"
+  puts "Please enter a number that is 1-9:"
   input = gets.chomp()
   index = input_to_index(input)
   if valid_move?(board, index)
@@ -108,9 +108,9 @@ end
 def play(board)
   turn(board) until over?(board)
   if won?(board)
-    puts "Congratulations #{won?(board)}"
-    elsif
-    over?(board)
+    puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
 
