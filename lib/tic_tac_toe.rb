@@ -1,5 +1,3 @@
-require 'pry'
-
 #These are the board array indicies that are game winning combinations
 WIN_COMBINATIONS = [
   [0,1,2],
