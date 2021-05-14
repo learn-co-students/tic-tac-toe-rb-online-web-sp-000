@@ -139,10 +139,10 @@ end
 
 #play method plays the game and will loop until someone wins or its a draw.
 def play(board)
-  turn(board) until over?(board)
-  if won?(board)
+  turn(board) until over?(board) == true
+  if won?(board) != nil
     puts "Congratulations #{winner(board)}!"
- elsif draw?(board)
+  elsif draw?(board)
     puts "Cat's Game!"
   end
 end

@@ -2,8 +2,6 @@
   "RSpec": {
     "coverage": {
       "/home/happy-commit-3837/tic-tac-toe-rb-online-web-sp-000/lib/tic_tac_toe.rb": [
-        1,
-        null,
         null,
         null,
         1,
@@ -157,6 +155,6 @@
         null
       ]
     },
-    "timestamp": 1621001010
+    "timestamp": 1621001340
   }
 }
