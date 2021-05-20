@@ -25,7 +25,50 @@ WIN_COMBINATIONS = [
     board[index] = player
   end
 
+  def turn_count(board)
+    board.count { |token| token == 'X' || token == 'O' }
+  end
+
+  def turn(board)
+    puts "Please enter 1-9:"
+    user_input = gets.strip
+    index = input_to_index(user_input)
+      if valid_move?(board, index)
+        move(board, index, current_player(board))
+        display_board(board)
+      else
+        turn(board)
+      end
+  end
+
+  def current_player(board)
+     turn_count(board).even? ? 'X' : 'O'
+  end
+
   def position_taken?(board, index)
     board[index] == "X" || board[index] == "O"
   end
-  
+
+  def valid_move?(board, index)
+    index.between?(0, 8) && !position_taken?(board, index)
+  end
+
+  def won?(board)
+    WIN_COMBINATIONS.detect do |combo|
+      board[combo[0]] == board[combo[1]] &&
+      board[combo[1]] == board[combo[2]] &&
+      position_taken?(board, combo[0])
+  end
+end
+
+def full?(board)
+  board.all? { |token| token == 'X' || token == 'O' }
+end
+
+def draw?(board)
+  !won?(board) && full?(board)
+end
+
+def over?(board)
+  won?(board) || draw?(board)
+end
