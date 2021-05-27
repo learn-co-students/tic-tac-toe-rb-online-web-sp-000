@@ -1,4 +1,8 @@
-# Tic Tac Toe in Ruby
+# Tic Tac Toe in Ruby 
+First Complete CLI application Ive ever built. 
+Wed May 26, 2021. 
+
+who? 
 
 ## Overview
 
