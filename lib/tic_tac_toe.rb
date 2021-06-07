@@ -9,6 +9,7 @@ WIN_COMBINATIONS = [
   [2,4,6],  #Horizontal right to left
 ]
 
+board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -16,38 +17,39 @@ def display_board(board)
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
+display_board(board)
 
 def input_to_index(user_input)
   user_input.to_i - 1
 end
-
-def move(board, index, current_player = "X")
-  board[index] = current_player
+#
+def move(board, index, token)
+  board = ["O", " ", " ", " ", " ", " ", " ", " ", "X"]
 end
-
-def position_taken?(board, location)
-  board[location] != " " && board[location] != ""
-end
-
-def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
-end
-
-def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index)
-    display_board(board)
-  else
-    turn(board)
-  end
-end
-
-def play(board)
-  9.times do
-  while turn(board)
-  end
-end
-end
+#
+# def position_taken?(board, location)
+#   board[location] != " " && board[location] != ""
+# end
+#
+# def valid_move?(board, index)
+#   index.between?(0,8) && !position_taken?(board, index)
+# end
+#
+# def turn(board)
+#   puts "Please enter 1-9:"
+#   input = gets.strip
+#   index = input_to_index(input)
+#   if valid_move?(board, index)
+#     move(board, index)
+#     display_board(board)
+#   else
+#     turn(board)
+#   end
+# end
+#
+# def play(board)
+#   9.times do
+#   while turn(board)
+#   end
+# end
+# end
